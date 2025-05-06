@@ -31,8 +31,12 @@ Aplikasi ini dikembangkan untuk membantu Dinas Sosial Kota Serang dalam mengelol
 
 ---
 
-## 📦 Instalasi
+## 📄 Copyright
 
-1. Clone repository:
-   ```bash
-   git clone https://github.com/username/nama-repo.git
+&copy; 2025 Dinas Sosial Kota Serang. All rights reserved.
+
+Seluruh konten, desain, dan fungsionalitas yang terdapat pada sistem ini adalah hak milik Dinas Sosial Kota Serang. Dilarang menyalin, menggandakan, atau menggunakan sebagian atau seluruh bagian dari sistem ini tanpa izin tertulis dari pihak yang berwenang.
+
+Website ini dibuat untuk keperluan pelayanan dan informasi publik oleh Dinas Sosial Kota Serang.
+
+Mochamad Farhan Ferdiansyah

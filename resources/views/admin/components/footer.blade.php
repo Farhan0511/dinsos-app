@@ -16,12 +16,12 @@
             </ul>
         </nav>
         <div class="copyright">
-            2024, made with <i class="fa fa-heart heart text-danger"></i> by
-            <a href="http://www.themekita.com">ThemeKita</a>
+            2025, made with <i class="fa fa-heart heart text-danger"></i> by
+            <a href="#">Dinas Sosial Kota Serang</a>
         </div>
         <div>
             Distributed by
-            <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+            <a target="_blank" href="#">Dinas Sosial Kota Serang</a>.
         </div>
     </div>
 </footer>

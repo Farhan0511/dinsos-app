@@ -1,5 +1,7 @@
 @extends('admin.main')
 
+@section('title', 'Dashboard Admin')
+
 @section('content')
     <div class="container">
         <div class="page-inner">
@@ -163,7 +165,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 @endsection

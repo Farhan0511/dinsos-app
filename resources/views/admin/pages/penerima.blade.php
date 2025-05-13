@@ -1,8 +1,8 @@
 @extends('admin.main')
 
-@section('title', 'Data Pendaftar')
+@section('title', 'Data Penerima')
 
-@section('data-pendaftar')
+@section('data-penerima')
     <div class="container">
         <div class="page-inner">
             <div class="page-header">

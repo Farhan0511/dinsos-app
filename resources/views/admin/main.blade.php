@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>@yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-    <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('views/image/21dinsos.png') }}" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="{{ asset('views/admin/assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -36,6 +36,7 @@
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="assets/css/demo.css" />
+    <link rel="stylesheet" href="{{ asset('views/admin/assets/css/fonts.css') }}">
 </head>
 
 <body>
@@ -45,15 +46,20 @@
         <div class="main-panel">
         @include('admin.components.navbar')
 
-        @yield('content') 
-        
+        @yield('dashboard') 
+
         @yield('input')
         
+        @yield('pendaftar')
+        
+        @yield('penerima')
+        
+        @yield('content')
+
         @include('admin.components.footer')
 
         </div>
 
-        <!-- Custom template | don't include it in your project! -->
        
     </div>
     <!--   Core JS Files   -->

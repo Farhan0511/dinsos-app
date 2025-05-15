@@ -2,67 +2,81 @@
 <div class="container-fluid bg-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
+            <!-- Kolom Kiri -->
             <div class="col-md-6">
-                <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="img/icon-1.png" alt=""
-                        style="width: 45px;">Dinas Sosial Kota Serang</h1>
-                <span>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
-                    stet lorem sit clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum
-                    et lorem et sit.</span>
+                <h1 class="text-primary mb-4">
+                    <img class="img-fluid me-2" src="img/icon-1.png" alt="" style="width: 45px;">
+                    Rehabilitasi Sosial Kota Serang
+                </h1>
+                <span>
+                    Rehabilitasi Sosial Kota Serang berkomitmen memberikan pelayanan dan dukungan kepada penyandang disabilitas, lansia, anak terlantar, dan kelompok rentan lainnya. Kami hadir untuk membangun kehidupan yang lebih mandiri dan bermartabat bagi seluruh masyarakat.
+                </span>
             </div>
+
+            <!-- Newsletter -->
             <div class="col-md-6">
-                <h5 class="mb-4">Newsletter</h5>
-                <p>Clita erat ipsum et lorem et sit, sed stet lorem sit clita.</p>
+                <h5 class="mb-4">Langganan Informasi</h5>
+                <p>Dapatkan informasi terbaru seputar program rehabilitasi sosial di Kota Serang langsung ke email Anda.</p>
                 <div class="position-relative">
                     <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
-                        placeholder="Your email">
+                        placeholder="Masukkan email Anda">
                     <button type="button"
-                        class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Langganan</button>
                 </div>
             </div>
+
+            <!-- Kontak -->
             <div class="col-lg-3 col-md-6">
-                <h5 class="mb-4">Get In Touch</h5>
-                <p><i class="fa fa-map-marker-alt me-3"></i>Jl. KH.Sulaeman No.20, Kagungan, Kec. Serang, Kota Serang,
-                    Banten 42114</p>
-                <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope me-3"></i>dinsos@gmail.com</p>
+                <h5 class="mb-4">Kontak Kami</h5>
+                <p><i class="fa fa-map-marker-alt me-3"></i>Jl. KH. Sulaeman No.20, Kagungan, Kec. Serang, Kota Serang, Banten 42114</p>
+                <p><i class="fa fa-phone-alt me-3"></i>+62 812 3456 7890</p>
+                <p><i class="fa fa-envelope me-3"></i>rehabsosial@kotaserang.go.id</p>
             </div>
+
+            <!-- Layanan Kami -->
             <div class="col-lg-3 col-md-6">
-                <h5 class="mb-4">Our Services</h5>
-                <a class="btn btn-link" href="">Currency Wallet</a>
-                <a class="btn btn-link" href="">Currency Transaction</a>
-                <a class="btn btn-link" href="">Bitcoin Investment</a>
-                <a class="btn btn-link" href="">Token Sale</a>
+                <h5 class="mb-4">Layanan Kami</h5>
+                <a class="btn btn-link" href="#">Layanan Disabilitas</a>
+                <a class="btn btn-link" href="#">Pelayanan Anak Terlantar</a>
+                <a class="btn btn-link" href="#">Pendampingan Lansia</a>
+                <a class="btn btn-link" href="#">Program Reintegrasi Sosial</a>
             </div>
+
+            <!-- Tautan Cepat -->
             <div class="col-lg-3 col-md-6">
-                <h5 class="mb-4">Quick Links</h5>
-                <a class="btn btn-link" href="">About Us</a>
-                <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Our Services</a>
-                <a class="btn btn-link" href="">Terms & Condition</a>
+                <h5 class="mb-4">Tautan Cepat</h5>
+                <a class="btn btn-link" href="#">Tentang Kami</a>
+                <a class="btn btn-link" href="#">Hubungi Kami</a>
+                <a class="btn btn-link" href="#">Galeri Kegiatan</a>
+                <a class="btn btn-link" href="#">Kebijakan & Privasi</a>
             </div>
+
+            <!-- Media Sosial -->
             <div class="col-lg-3 col-md-6">
-                <h5 class="mb-4">Follow Us</h5>
+                <h5 class="mb-4">Ikuti Kami</h5>
                 <div class="d-flex">
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square rounded-circle me-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-square rounded-circle me-1" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square rounded-circle me-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square rounded-circle me-1" href="#"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-square rounded-circle me-1" href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Copyright -->
     <div class="container-fluid copyright">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a href="#">Dinsos Kota Serang</a>, All Right Reserved.
+                    &copy; <a href="#">Rehabilitasi Sosial Kota Serang</a>, Hak Cipta Dilindungi.
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    &copy; 2025 Dinas Sosial Kota Serang. All rights reserved.
+                    &copy; 2025 Rehabilitasi Sosial Kota Serang. Seluruh hak cipta dilindungi undang-undang.
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
 <!-- Footer End -->

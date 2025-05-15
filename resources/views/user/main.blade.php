@@ -39,8 +39,7 @@
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
-
-
+    
     <!-- Navbar Start -->
     @include('user.components.navbar')
     <!-- Navbar End -->
@@ -50,6 +49,7 @@
     @include('user.pages.hero')
     <!-- Hero End -->
 
+    {{-- @include('user.pages.form-pendaftar') --}}
 
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -95,211 +95,134 @@
     <!-- About End -->
 
     <!-- Service Start -->
-    <div class="container-xxl bg-light py-5 my-5">
-        <div class="container py-5">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6">Program Kami</h1>
-                <p class="text-primary fs-5 mb-5">Buy, Sell And Exchange Cryptocurrency</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-white p-5">
-                        <img class="img-fluid mb-4" src="img/icon-7.png" alt="">
-                        <h5 class="mb-3">Currency Wallet</h5>
-                        <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                            justo</p>
-                        <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-white p-5">
-                        <img class="img-fluid mb-4" src="img/icon-3.png" alt="">
-                        <h5 class="mb-3">Currency Transaction</h5>
-                        <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                            justo</p>
-                        <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item bg-white p-5">
-                        <img class="img-fluid mb-4" src="img/icon-9.png" alt="">
-                        <h5 class="mb-3">Bitcoin Investment</h5>
-                        <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                            justo</p>
-                        <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-white p-5">
-                        <img class="img-fluid mb-4" src="img/icon-5.png" alt="">
-                        <h5 class="mb-3">Currency Exchange</h5>
-                        <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                            justo</p>
-                        <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-white p-5">
-                        <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
-                        <h5 class="mb-3">Bitcoin Escrow</h5>
-                        <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                            justo</p>
-                        <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item bg-white p-5">
-                        <img class="img-fluid mb-4" src="img/icon-8.png" alt="">
-                        <h5 class="mb-3">Token Sale</h5>
-                        <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                            justo</p>
-                        <a href="">Read More <i class="fa fa-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('user.pages.program')
     <!-- Service End -->
 
     <!-- FAQs Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h1 class="display-6">FAQs</h1>
-                <p class="text-primary fs-5 mb-5">Frequently Asked Questions</p>
+                <p class="text-primary fs-5 mb-5">Pertanyaan yang Sering Diajukan seputar Layanan Rehabilitasi Sosial
+                </p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="accordion" id="accordionExample">
+                        <!-- FAQ 1 -->
                         <div class="accordion-item wow fadeInUp" data-wow-delay="0.1s">
-                            <h2 class="accordion-header" id="headingOne">
+                            <h2 class="accordion-header" id="faq1">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    How to build a website?
+                                    data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                    Bagaimana cara mendapatkan bantuan sosial dari Dinas Sosial?
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1"
+                                data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
+                                    Anda dapat mengajukan permohonan melalui kelurahan setempat atau datang langsung ke
+                                    kantor Dinas Sosial dengan membawa dokumen persyaratan seperti KTP, KK, dan surat
+                                    keterangan tidak mampu.
                                 </div>
                             </div>
                         </div>
+
+                        <!-- FAQ 2 -->
                         <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
-                            <h2 class="accordion-header" id="headingTwo">
+                            <h2 class="accordion-header" id="faq2">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    How long will it take to get a new website?
+                                    data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                    Apa saja jenis bantuan yang disediakan oleh Dinas Sosial?
                                 </button>
                             </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
+                                    Semua bantuan yang diberikan Dinas Sosial bertujuan untuk rehabilitasi sosial,
+                                    termasuk
+                                    bantuan sembako, tunai, layanan bagi lansia, penyandang disabilitas, anak terlantar,
+                                    serta program pemulihan lainnya.
                                 </div>
                             </div>
                         </div>
+
+                        <!-- FAQ 3 -->
                         <div class="accordion-item wow fadeInUp" data-wow-delay="0.3s">
-                            <h2 class="accordion-header" id="headingThree">
+                            <h2 class="accordion-header" id="faq3">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false"
-                                    aria-controls="collapseThree">
-                                    Do you only create HTML websites?
+                                    data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                    Apakah Dinas Sosial memberikan bantuan bencana?
                                 </button>
                             </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse"
-                                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3"
+                                data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
+                                    Ya, Dinas Sosial memiliki tim tanggap darurat dan menyediakan bantuan logistik serta
+                                    layanan rehabilitasi sosial bagi korban bencana seperti kebakaran, banjir, dan
+                                    lainnya.
                                 </div>
                             </div>
                         </div>
+
+                        <!-- FAQ 4 -->
                         <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
-                            <h2 class="accordion-header" id="headingFour">
+                            <h2 class="accordion-header" id="faq4">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                    Will my website be mobile-friendly?
+                                    data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                    Bagaimana cara melaporkan orang dengan gangguan jiwa (ODGJ) di lingkungan saya?
                                 </button>
                             </h2>
-                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
+                                    Anda dapat melaporkannya melalui kelurahan, RT/RW, atau langsung ke Dinas Sosial
+                                    agar tim kami dapat menindaklanjuti dengan pendekatan rehabilitasi sosial.
                                 </div>
                             </div>
                         </div>
+
+                        <!-- FAQ 5 -->
                         <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s">
-                            <h2 class="accordion-header" id="headingFive">
+                            <h2 class="accordion-header" id="faq5">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFive" aria-expanded="false"
-                                    aria-controls="collapseFive">
-                                    Will you maintain my site for me?
+                                    data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                    Bagaimana saya bisa menjadi relawan sosial?
                                 </button>
                             </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
+                                    Untuk menjadi relawan, Anda dapat mendaftar melalui program rehabilitasi sosial
+                                    resmi
+                                    Dinas Sosial atau mengikuti kegiatan komunitas yang bekerja sama dengan kami.
                                 </div>
                             </div>
                         </div>
+
+                        <!-- FAQ 6 -->
                         <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
-                            <h2 class="accordion-header" id="headingSix">
+                            <h2 class="accordion-header" id="faq6">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                    I’m on a strict budget. Do you have any low cost options?
+                                    data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                    Bagaimana saya bisa mengecek status bantuan yang saya ajukan?
                                 </button>
                             </h2>
-                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                            <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
+                                    Status bantuan dapat dicek melalui website resmi Dinas Sosial atau datang langsung
+                                    ke kantor dengan membawa nomor registrasi permohonan.
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.7s">
-                            <h2 class="accordion-header" id="headingSeven">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseSeven" aria-expanded="false"
-                                    aria-controls="collapseSeven">
-                                    Will you maintain my site for me?
-                                </button>
-                            </h2>
-                            <div id="collapseSeven" class="accordion-collapse collapse"
-                                aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
-                            <h2 class="accordion-header" id="headingEight">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseEight" aria-expanded="false"
-                                    aria-controls="collapseEight">
-                                    I’m on a strict budget. Do you have any low cost options?
-                                </button>
-                            </h2>
-                            <div id="collapseEight" class="accordion-collapse collapse"
-                                aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    Dolor nonumy tempor elitr et rebum ipsum sit duo duo. Diam sed sed magna et magna
-                                    diam aliquyam amet dolore ipsum erat duo. Sit rebum magna duo labore no diam.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    </div> <!-- end accordion -->
                 </div>
             </div>
         </div>
     </div>
+
+
     <!-- FAQs Start -->
 
     {{-- Footer --}}

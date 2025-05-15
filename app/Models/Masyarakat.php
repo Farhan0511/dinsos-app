@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Masyarakat extends Model
 {
-    use HasFactory;
+    protected $table = 'masyarakats';
+
+    protected $fillable = [
+        'nama',
+        'email',
+        'alamat',
+        'jenisKelamin',
+        'jenisBantuan',
+        'nomorTelepon',
+    ];
 }

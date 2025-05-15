@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MasyarakatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,12 +14,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Halaman Admin
+Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Hal Admin Input
+Route::get('/input-berita', [HomeController::class, 'inputBerita'])->name('inputBerita');
 
-Route::get('/admin', function () {
-    return view('admin.pages.dashboard');
-});
+// Hal User
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
+Route::get('/data-pendaftar', [HomeController::class, 'pendaftar'])->name('pendaftar');
+
+Route::get('/data-pendaftar', [MasyarakatController::class, 'index'])->name('pendaftar');
+
+Route::get('/data-penerima', [HomeController::class, 'penerima'])->name('penerima');

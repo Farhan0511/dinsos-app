@@ -30,21 +30,15 @@
                      </a>
                  </li>             
                  <li class="nav-item">
-                     <a  href="{{ route('input') }}">
+                     <a  href="{{ route('inputBerita') }}">
                          <i class="fas fa-pen-square"></i>
                          <p>Input Berita</p>
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a data-bs-toggle="collapse" href="#tables">
+                     <a  href="{{ route('pendaftar') }}">
                          <i class="fas fa-table"></i>
                          <p>Data Pendaftar</p>
-                     </a>
-                 </li>
-                 <li class="nav-item">
-                     <a data-bs-toggle="collapse" href="#maps">
-                         <i class="fas fa-map-marker-alt"></i>
-                         <p>Data Penerima</p>
                      </a>
                  </li>
                  <li class="nav-item">
@@ -53,6 +47,12 @@
                          <p>Verifikasi Data</p>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a  href="{{ route('penerima') }}">
+                         <i class="fas fa-check"></i>
+                         <p>Data Penerima</p>
+                     </a>
+                 </li>           
                  <li class="nav-item">
                      <a href="widgets.html">
                          <i class="fas fa-desktop"></i>

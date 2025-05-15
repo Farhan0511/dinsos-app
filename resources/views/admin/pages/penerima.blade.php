@@ -1,18 +1,18 @@
 @extends('admin.main')
 
-@section('title', 'Data Penerima')
+@section('title', 'Data | Penerima')
 
-@section('data-penerima')
+@section('penerima')
     <div class="container">
         <div class="page-inner">
             <div class="page-header">
-                <h3 class="fw-bold mb-3">Tables</h3>
+                <h3 class="fw-bold mb-3">Data Penerima</h3>
             </div>
             <div class=" w-100">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Basic Table</div>
+                            <div class="card-title">Data Penerima</div>
                         </div>
                         <div class="card-body">
                             <div class="input-group">
@@ -27,42 +27,41 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Alamat</th>
                                         <th scope="col">Jenis Kelamin</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">No Telepon</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
                                         <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <td>mark@example.com</td>
+                                        <td>Jl. Merdeka No.1</td>
+                                        <td>Laki-laki</td>
+                                        <td>081234567890</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-sm btn-danger"><i
-                                                    class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
+                                        <td>jacob@example.com</td>
+                                        <td>Jl. Sudirman No.2</td>
+                                        <td>Perempuan</td>
+                                        <td>081298765432</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-sm btn-danger"><i
-                                                    class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                        <td>Larry the Bird</td>
+                                        <td>larry@example.com</td>
+                                        <td>Jl. Pahlawan No.3</td>
+                                        <td>Laki-laki</td>
+                                        <td>081200011122</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-sm btn-danger"><i
-                                                    class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -70,10 +69,7 @@
 
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>

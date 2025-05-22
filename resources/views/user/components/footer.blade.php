@@ -33,24 +33,6 @@
                 <p><i class="fa fa-envelope me-3"></i>rehabsosial@kotaserang.go.id</p>
             </div>
 
-            <!-- Layanan Kami -->
-            <div class="col-lg-3 col-md-6">
-                <h5 class="mb-4">Layanan Kami</h5>
-                <a class="btn btn-link" href="#">Layanan Disabilitas</a>
-                <a class="btn btn-link" href="#">Pelayanan Anak Terlantar</a>
-                <a class="btn btn-link" href="#">Pendampingan Lansia</a>
-                <a class="btn btn-link" href="#">Program Reintegrasi Sosial</a>
-            </div>
-
-            <!-- Tautan Cepat -->
-            <div class="col-lg-3 col-md-6">
-                <h5 class="mb-4">Tautan Cepat</h5>
-                <a class="btn btn-link" href="#">Tentang Kami</a>
-                <a class="btn btn-link" href="#">Hubungi Kami</a>
-                <a class="btn btn-link" href="#">Galeri Kegiatan</a>
-                <a class="btn btn-link" href="#">Kebijakan & Privasi</a>
-            </div>
-
             <!-- Media Sosial -->
             <div class="col-lg-3 col-md-6">
                 <h5 class="mb-4">Ikuti Kami</h5>

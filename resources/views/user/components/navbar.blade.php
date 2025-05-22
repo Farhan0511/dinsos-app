@@ -1,25 +1,35 @@
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
-    <a href="index.html" class="navbar-brand d-flex align-items-center">
-        <h2 class="m-0 text-dark">
-            <img class="img-fluid me-2" alt="" style="width: 45px;">
-            Dinsos Kota Serang
-        </h2>
-    </a>
-    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
+            <span class="fw-bold text-dark" style="font-size: 1.4rem;">Dinsos Kota Serang</span>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto py-4 py-lg-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="#" class="nav-item nav-link">Daftar</a>
-            <a href="service.html" class="nav-item nav-link">Penerima</a>
-            <a href="contact.html" class="nav-item nav-link">Contact</a>
-        </div>
-        <!-- Tombol Login & Register -->
-        <div class="d-flex ms-3">
-            <a href="#" class="btn btn-outline-primary me-2">Login</a>
-            <a href="#" class="btn btn-primary">Register</a>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link active fw-semibold" href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="{{ route('daftar') }}">Daftar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="service.html">Penerima</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="contact.html">Berita Terbaru</a>
+                </li>
+            </ul>
+            <div class="d-flex ms-lg-4 mt-3 mt-lg-0">
+                <a href="{{ route('loginUser') }}"
+                    class="btn btn-outline-primary me-2 px-4 py-2 rounded-pill fw-semibold">Login</a>
+                <a href="{{ route('register') }}"
+                    class="btn btn-primary px-4 py-2 rounded-pill fw-semibold">Register</a>
+            </div>
         </div>
     </div>
 </nav>

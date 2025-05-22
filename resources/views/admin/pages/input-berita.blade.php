@@ -1,7 +1,7 @@
 @extends('admin.main')
 
-@section('title', 'Input-berita')
-@section('input')
+@section('title', 'Input Berita')
+@section('content')
     <div class="container my-5">
         <div class="row justify-content-center mt-5">
             <div class="col-md-10 col-lg-8 mt-3">

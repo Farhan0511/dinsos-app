@@ -41,26 +41,17 @@
 
 <body>
     <div class="wrapper">
-       @include('admin.components.sidebar')
+        @include('admin.components.sidebar')
 
         <div class="main-panel">
-        @include('admin.components.navbar')
+            @include('admin.components.navbar')
 
-        @yield('dashboard') 
+            @yield('content')
 
-        @yield('input')
-        
-        @yield('pendaftar')
-        
-        @yield('penerima')
-        
-        @yield('content')
-
-        @include('admin.components.footer')
-
+            @include('admin.components.footer')
         </div>
 
-       
+
     </div>
     <!--   Core JS Files   -->
     <script src="{{ asset('views/admin/assets/js/core/jquery-3.7.1.min.js') }}"></script>

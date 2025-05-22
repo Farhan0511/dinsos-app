@@ -29,4 +29,12 @@ class HomeController extends Controller
         return view('admin.pages.penerima');
     }
 
+    public function daftar(){
+        return view('user.pages.daftar');
+    }
+
+    public function register(){
+        return view('auth.pages.register');
+    }
+
 }

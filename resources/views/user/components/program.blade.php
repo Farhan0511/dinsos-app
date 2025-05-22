@@ -8,7 +8,6 @@
         ['title' => 'Token Sale'],
     ];
 @endphp
-
 <div class="container-xxl bg-light py-5 my-5">
     <div class="container py-5">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">

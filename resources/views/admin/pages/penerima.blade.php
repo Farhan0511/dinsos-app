@@ -2,7 +2,7 @@
 
 @section('title', 'Data | Penerima')
 
-@section('penerima')
+@section('content')
     <div class="container">
         <div class="page-inner">
             <div class="page-header">

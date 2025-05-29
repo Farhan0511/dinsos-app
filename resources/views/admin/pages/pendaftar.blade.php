@@ -20,20 +20,21 @@
                                 <table class="table table-striped table-hover mb-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Alamat</th>
-                                            <th scope="col">Jenis Kelamin</th>
-                                            <th scope="col">Jenis Bantuan</th>
-                                            <th scope="col">No Telepon</th>
-                                            <th scope="col">Action</th>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
+                                            <th>Alamat</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jenis Bantuan</th>
+                                            <th>No Telepon</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $d)
                                             <tr>
-                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $d->nama }}</td>
                                                 <td>{{ $d->email }}</td>
                                                 <td>{{ $d->alamat }}</td>
@@ -41,8 +42,19 @@
                                                 <td>{{ $d->jenisBantuan }}</td>
                                                 <td>{{ $d->nomorTelepon }}</td>
                                                 <td>
-                                                    <a href="{{ route('editUser', $d->id) }}" class="btn btn-sm btn-primary"
-                                                        title="Edit">
+                                                    @if ($d->status == 'diterima')
+                                                        <span class="text-success">
+                                                            <i class="fas fa-check-circle"></i> Diterima
+                                                        </span>
+                                                    @else
+                                                        <span class="text-danger">
+                                                            <i class="fas fa-times-circle"></i> Belum Diterima
+                                                        </span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.editUser', $d->id) }}"
+                                                        class="btn btn-sm btn-primary" title="Edit Status">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
 
@@ -54,7 +66,7 @@
 
                                                     {{-- Form hapus disembunyikan --}}
                                                     <form id="form-delete-{{ $d->id }}"
-                                                        action="{{ route('hapusUser', $d->id) }}" method="POST"
+                                                        action="{{ route('admin.hapusUser', $d->id) }}" method="POST"
                                                         style="display:none;">
                                                         @csrf
                                                         @method('DELETE')
@@ -64,6 +76,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
                             </div> <!-- /.table-responsive -->
                         </div>
                     </div>

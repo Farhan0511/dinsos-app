@@ -1,6 +1,6 @@
 @extends('kepala-dinas.main')
 
-@section('title', 'Dashboard Kepala Dinas')
+@section('title', 'Dashboard | Kepala Dinas')
 
 @section('content')
     <div class="container">

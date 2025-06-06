@@ -42,10 +42,13 @@
                                     placeholder="name@example.com" value="{{ old('email') }}">
                                 <label for="floatingInput">Email address</label>
                             </div>
-                            <div class="form-floating mb-4">
+                            <div class="form-floating mb-4 position-relative">
                                 <input type="password" name="password" class="form-control" id="floatingPassword"
-                                    placeholder="Password">
+                                    placeholder="Password" />
                                 <label for="floatingPassword">Password</label>
+
+                                <i id="togglePassword" class="bi bi-eye position-absolute"
+                                    style="top: 50%; right: 1rem; transform: translateY(-50%); cursor: pointer; user-select: none;"></i>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
@@ -65,13 +68,28 @@
         <!-- Sign In End -->
     </div>
 
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('floatingPassword');
+
+        togglePassword.addEventListener('click', function() {
+            // toggle tipe input password/text
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // toggle icon mata buka/tutup
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
+
     <!-- SweetAlert Error Validation -->
     @if ($errors->any())
         <script>
             Swal.fire({
                 icon: 'error',
                 title: 'Login Gagal!',
-                html: `{!! implode('<br>', $errors->all()) !!}`,
+                html: `Silahkan masukkan email dan password yang benar`,
             });
         </script>
     @endif

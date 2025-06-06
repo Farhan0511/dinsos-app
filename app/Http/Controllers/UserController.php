@@ -38,7 +38,7 @@ class UserController extends Controller
             'jenisKelamin' => $data['jenisKelamin'],
             'jenisBantuan' => $data['jenisBantuan'],
             'nomorTelepon' => $data['nomorTelepon'],
-            'password' => Hash::make('kontol123'),
+            'password' => Hash::make('123'),
         ]);
 
         return redirect()->back()->with('success', 'Berhasil ditambahkan!');
@@ -47,7 +47,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = User::find($id);
-        return view('admin.pages.edit', compact('data'));
+        return view('admin.pages.edit-pendaftar', compact('data'));
     }
 
     public function edit_post(Request $request, $id)
@@ -59,9 +59,11 @@ class UserController extends Controller
             'jenisKelamin' => 'required',
             'jenisBantuan' => 'required',
             'nomorTelepon' => 'required',
+            'status' => 'required', // ✅ tambahkan validasi status
         ]);
 
         $user = User::find($id);
+
         $user->update([
             'nama' => $data['nama'],
             'email' => $data['email'],
@@ -69,13 +71,15 @@ class UserController extends Controller
             'jenisKelamin' => $data['jenisKelamin'],
             'jenisBantuan' => $data['jenisBantuan'],
             'nomorTelepon' => $data['nomorTelepon'],
-            'password' => Hash::make('kontol123'),
+            'status' => $data['status'], // ✅ simpan status
+            'password' => Hash::make('123'),
         ]);
 
         return redirect()->back()->with('success', 'Berhasil diedit!');
     }
 
-    public function hapus_user( $id)
+
+    public function hapus_user($id)
     {
         $data = User::find($id);
 
@@ -85,5 +89,33 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('error', 'User tidak ditemukan!');
+    }
+
+    public function editProfile()
+    {
+        return view('user.pages.profile'); // Sesuaikan nama filenya
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        // Validasi data
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
+
+        // Update nama
+        $user->nama = $request->nama;
+
+        // Jika password diisi, update juga
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('user.profile.edit')->with('success', 'Profil berhasil diperbarui.');
     }
 }

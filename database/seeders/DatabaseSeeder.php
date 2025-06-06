@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'jenisKelamin' => 'laki-laki',
             'jenisBantuan' => 'Kursi Roda',
             'nomorTelepon' => '084651561',
+            'role' => 'admin',
             'password' => Hash::make('kontol123'),
         ]);
     }

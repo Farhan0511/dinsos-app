@@ -36,27 +36,41 @@
                         </form>
                     </ul>
                 </li>
-                <li class="nav-item topbar-user dropdown hidden-caret">
-                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
-                        aria-expanded="false">
-                        <div class="avatar-sm">
-                            <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" />
-                        </div>
-                        <span class="profile-username">
-                            <span class="op-7">Hi,</span>
-                            <span class="fw-bold">Hizrian</span>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user animated fadeIn">
-                        <div class="dropdown-user-scroll scrollbar-outer">
-                            <li>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </li>
-                        </div>
-                    </ul>
-                </li>
+
+                @auth
+                    <li class="nav-item topbar-user dropdown hidden-caret">
+                        <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
+                            aria-expanded="false">
+                            {{-- Ganti avatar gambar dengan icon user --}}
+                            <div class="avatar-sm d-flex justify-content-center align-items-center rounded-circle bg-secondary text-white"
+                                style="width:40px; height:40px;">
+                                <i class="fa fa-user fa-lg"></i>
+                            </div>
+
+                            <span class="profile-username">
+                                <span class="op-7">Hi,</span>
+                                <span class="fw-bold">{{ Auth::user()->nama }}</span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user animated fadeIn">
+                            <div class="dropdown-user-scroll scrollbar-outer">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                @endauth
             </ul>
         </div>
     </nav>
+
     <!-- End Navbar -->
 </div>

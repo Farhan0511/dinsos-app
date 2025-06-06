@@ -24,6 +24,7 @@ class User extends Authenticatable
         'jenisKelamin',
         'jenisBantuan',
         'nomorTelepon',
+        'status',
         'password',
         'role',
     ];

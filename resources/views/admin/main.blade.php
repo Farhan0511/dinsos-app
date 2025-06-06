@@ -83,6 +83,8 @@
     <!-- Sweet Alert -->
     <script src="{{ asset('views/admin/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Kaiadmin JS -->
     <script src="{{ asset('views/admin/assets/js/kaiadmin.min.js') }}"></script>
 

@@ -4,15 +4,6 @@
     <div class="container-fluid">
         <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
 
-            <!-- Spinner Start -->
-            <div id="spinner"
-                class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-            <!-- Spinner End -->
-
             <!-- Gambar di sebelah kiri -->
             <div class="col-12 col-md-6 d-none d-md-block">
                 <div class="text-center">
@@ -27,22 +18,25 @@
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h3>Sign Up</h3>
                     </div>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register-proses') }}">
                         @csrf
                         <div class="form-floating mb-3">
                             <input type="text" name="nama" class="form-control" id="floatingText"
-                                placeholder="jhondoe">
+                                placeholder="jhondoe" value="{{ old('nama') }}">
                             <label for="floatingText">Username</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="email" name="email" class="form-control" id="floatingInput"
-                                placeholder="name@example.com">
+                                placeholder="name@example.com" value="{{ old('email') }}">
                             <label for="floatingInput">Email address</label>
                         </div>
-                        <div class="form-floating mb-4">
+                        <div class="form-floating mb-4 position-relative">
                             <input type="password" name="password" class="form-control" id="floatingPassword"
-                                placeholder="Password">
+                                placeholder="Password" />
                             <label for="floatingPassword">Password</label>
+
+                            <i id="togglePassword" class="bi bi-eye position-absolute"
+                                style="top: 50%; right: 1rem; transform: translateY(-50%); cursor: pointer; user-select: none;"></i>
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
                         <p class="text-center mb-0">Already have an Account? <a href="{{ route('loginUser') }}">Sign In</a>
@@ -53,4 +47,49 @@
 
         </div>
     </div>
+
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+
+    @if (session('failed'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ session('failed') }}',
+            });
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ $errors->first() }}'
+            });
+        </script>
+    @endif
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('floatingPassword');
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    </script>
 @endsection

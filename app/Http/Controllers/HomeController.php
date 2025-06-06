@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function inputBerita()
     {
-        return view('admin.pages.input-berita');
+        return view('admin.berita.input-berita');
     }
 
     public function home()
@@ -37,4 +37,7 @@ class HomeController extends Controller
         return view('auth.pages.register');
     }
 
+    public function berita(){
+        return view('user.pages.berita');
+    }
 }

@@ -31,7 +31,7 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="{{ route('admin.penerima') }}">
+                     <a href="{{ route('kepala-dinas.penerima') }}">
                          <i class="fas fa-check"></i>
                          <p>Data Penerima</p>
                      </a>

@@ -7,7 +7,7 @@
                     <p class="animated slideInDown">Ayo kenali dan manfaatkan berbagai program bantuan dari Dinas Sosial
                         Kota Serang untuk
                         mendukung kesejahteraan keluarga dan lingkungan sekitarmu!</p>
-                    <a href="{{ route('daftar') }}" class="btn btn-primary py-3 px-4 animated slideInDown">Daftar
+                    <a href="{{ route('user.daftar') }}" class="btn btn-primary py-3 px-4 animated slideInDown">Daftar
                         Sekarang!</a>
                 </div>
                 <div class="col-lg-6 animated fadeIn">

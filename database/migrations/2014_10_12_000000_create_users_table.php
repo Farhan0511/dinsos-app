@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('alamat');
+            $table->string('alamat')->nullable();
             $table->enum('jenisKelamin', ['laki-laki', 'perempuan'])->nullable();
             $table->enum('jenisBantuan', ['Kursi Roda', 'Kaki Palsu', 'Tangan Palsu'])->nullable();
             $table->bigInteger('nomorTelepon')->nullable();
-            $table->enum('role', ['admin', 'kepala dinas', 'kepala program', 'sekdis']);
+            $table->enum('role', ['admin', 'kepala dinas', 'kepala program', 'sekdis', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

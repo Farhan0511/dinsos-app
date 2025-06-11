@@ -1,73 +1,44 @@
 @extends('admin.main')
 
-@section('title', 'Form Distribusi Bantuan')
-
 @section('content')
-    <div class="container">
+    <div class="container" style="max-width: 100%; margin-top: 8rem;">
         <div class="card">
-            <div class="card-header">
-                <h4 class="mb-0">Form Distribusi Bantuan</h4>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card-title m-0">Basic Table</div>
+                <a href="{{ route('admin.createDistribusi') }}" class="btn btn-primary btn-sm">+ Tambah Data</a>
             </div>
             <div class="card-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    {{-- Email --}}
-                    <div class="form-group mb-3">
-                        <label for="email2">Email Address</label>
-                        <input type="email" class="form-control" id="email2" name="email"
-                            placeholder="Masukkan Email">
-                    </div>
-
-                    {{-- nama --}}
-                    <div class="form-group mb-3">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama"
-                            placeholder="Masukkan Nama">
-                    </div>
-
-
-                    {{-- Foto Penerima --}}
-                    <div class="form-group mb-3">
-                        <label for="foto_penerima">Foto Penerima Bantuan</label>
-                        <input type="file" class="form-control" id="foto_penerima" name="foto_penerima" accept="image/*">
-                    </div>
-
-                    {{-- Foto Rumah --}}
-                    <div class="form-group mb-3">
-                        <label for="foto_rumah">Foto Keadaan Rumah</label>
-                        <input type="file" class="form-control" id="foto_rumah" name="foto_rumah" accept="image/*">
-                    </div>
-
-                    {{-- Alamat --}}
-                    <div class="form-group mb-3">
-                        <label for="alamat">Alamat Lengkap</label>
-                        <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
-                    </div>
-
-                    {{-- Jenis Kelamin --}}
-                    <div class="form-group mb-3">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                            <option value="">-- Pilih Jenis Kelamin --</option>
-                            <option value="laki-laki">Laki-laki</option>
-                            <option value="perempuan">Perempuan</option>
-                        </select>
-                    </div>
-
-                    {{-- Nomor Telepon --}}
-                    <div class="form-group mb-4">
-                        <label for="no_telp">Nomor Telepon</label>
-                        <input type="text" class="form-control" id="no_telp" name="no_telp"
-                            placeholder="Contoh: 08123456789">
-                    </div>
-
-                    {{-- Tombol Aksi --}}
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-danger">Batal</a>
-                    </div>
-                </form>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

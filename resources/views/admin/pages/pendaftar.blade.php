@@ -13,8 +13,16 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Data Pendaftar</div>
-                            <input type="text" placeholder="Search ..." class="form-control mt-3" />
+                            <form method="GET" action="{{ route('admin.pendaftar') }}" class="d-flex">
+                                <input type="text" name="search" placeholder="Search ..." class="form-control mt-3 me-2"
+                                    value="{{ request('search') }}">
+                                <button type="submit" class="btn btn-secondary mt-3">Cari</button>
+
+                                <a href="{{ route('admin.pendaftar') }}"
+                                    class="btn btn-outline-secondary mt-3 ms-2">Refresh</a>
+                            </form>
                         </div>
+
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover mb-0">
@@ -27,6 +35,8 @@
                                             <th>Jenis Kelamin</th>
                                             <th>Jenis Bantuan</th>
                                             <th>No Telepon</th>
+                                            <th>Foto KTP</th>
+                                            <th>Foto Rumah</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -41,6 +51,24 @@
                                                 <td>{{ $d->jenisKelamin }}</td>
                                                 <td>{{ $d->jenisBantuan }}</td>
                                                 <td>{{ $d->nomorTelepon }}</td>
+                                                <td>
+                                                    @if ($d->fotoKtp)
+                                                        <img src="{{ asset('views/image/' . $d->fotoKtp) }}" alt="Foto KTP"
+                                                            width="100" class="zoomable-img"
+                                                            data-img="{{ asset('views/image/' . $d->fotoKtp) }}">
+                                                    @else
+                                                        <span class="text-muted">Belum Upload</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($d->fotoRumah)
+                                                        <img src="{{ asset('views/image/' . $d->fotoRumah) }}"
+                                                            alt="Foto Rumah" width="100" class="zoomable-img"
+                                                            data-img="{{ asset('views/image/' . $d->fotoRumah) }}">
+                                                    @else
+                                                        <span class="text-muted">Belum Upload</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if ($d->status == 'diterima')
                                                         <span class="text-success">
@@ -58,13 +86,11 @@
                                                         <i class="fas fa-edit"></i>
                                                     </a>
 
-                                                    {{-- Tombol hapus --}}
                                                     <button class="btn btn-sm btn-danger btn-delete"
                                                         data-id="{{ $d->id }}" title="Delete">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
 
-                                                    {{-- Form hapus disembunyikan --}}
                                                     <form id="form-delete-{{ $d->id }}"
                                                         action="{{ route('admin.hapusUser', $d->id) }}" method="POST"
                                                         style="display:none;">
@@ -76,7 +102,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-
                             </div> <!-- /.table-responsive -->
                         </div>
                     </div>
@@ -88,8 +113,8 @@
     {{-- Load SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- Script hapus data --}}
     <script>
-        // Tangkap semua tombol hapus
         document.querySelectorAll('.btn-delete').forEach(button => {
             button.addEventListener('click', function() {
                 const userId = this.getAttribute('data-id');
@@ -105,7 +130,6 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Submit form hapus yang tersembunyi
                         document.getElementById('form-delete-' + userId).submit();
                     }
                 });
@@ -113,7 +137,7 @@
         });
     </script>
 
-    {{-- SweetAlert notifikasi sukses dari server --}}
+    {{-- SweetAlert Notifikasi Sukses --}}
     @if (session('success'))
         <script>
             Swal.fire({
@@ -126,7 +150,7 @@
         </script>
     @endif
 
-    {{-- SweetAlert notifikasi error dari server --}}
+    {{-- SweetAlert Notifikasi Error --}}
     @if (session('error'))
         <script>
             Swal.fire({
@@ -138,4 +162,23 @@
             });
         </script>
     @endif
+
+    {{-- Zoom Gambar dengan SweetAlert2 --}}
+    <script>
+        document.querySelectorAll('.zoomable-img').forEach(img => {
+            img.addEventListener('click', function() {
+                const imageUrl = this.getAttribute('data-img');
+
+                Swal.fire({
+                    imageUrl: imageUrl,
+                    imageAlt: 'Foto Pendaftar',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    width: 'auto',
+                    padding: '1em',
+                    background: '#fff',
+                });
+            });
+        });
+    </script>
 @endsection

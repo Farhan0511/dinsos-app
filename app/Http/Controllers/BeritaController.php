@@ -21,6 +21,14 @@ class BeritaController extends Controller
         return view('admin.berita.input-berita');
     }
 
+    // Tampilkan berita untuk user (frontend)
+    public function beritaUser()
+    {
+        $beritas = Berita::orderByDesc('created_at')->paginate(6); // Atur jumlah sesuai kebutuhan
+        return view('user.pages.berita', compact('beritas'));
+    }
+
+
     // Simpan berita baru
     public function store(Request $request)
     {

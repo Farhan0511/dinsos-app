@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('jenisKelamin', ['laki-laki', 'perempuan'])->nullable();
             $table->enum('jenisBantuan', ['Kursi Roda', 'Kaki Palsu', 'Tangan Palsu'])->nullable();
             $table->bigInteger('nomorTelepon')->nullable();
+            $table->string('fotoKtp')->nullable();
             $table->enum('role', ['admin', 'kepala dinas', 'kepala program', 'sekdis', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();

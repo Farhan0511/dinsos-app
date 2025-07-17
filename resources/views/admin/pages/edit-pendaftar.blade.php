@@ -8,7 +8,8 @@
                 <h4>Form Edit User</h4>
             </div>
             <div class="card-body">
-                <form id="formUser" action="{{ route('admin.updateStatus', $user->id) }}" method="POST">
+                <form id="formUser" action="{{ route('admin.updateStatus', $user->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
 
                     {{-- Tampilkan error validasi server --}}
@@ -27,11 +28,13 @@
                         <input type="text" id="nama" name="nama" class="form-control" required
                             value="{{ old('nama', $user->nama) }}">
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" class="form-control" required
                             value="{{ old('email', $user->email) }}">
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="jenisKelamin">Jenis Kelamin</label>
                         <select id="jenisKelamin" name="jenisKelamin" class="form-control">
@@ -41,6 +44,7 @@
                                 {{ strtolower($user->jenisKelamin) == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="jenisBantuan">Jenis Bantuan</label>
                         <select id="jenisBantuan" name="jenisBantuan" class="form-control">
@@ -52,17 +56,28 @@
                                 Palsu</option>
                         </select>
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="alamat">Alamat</label>
-                        <textarea id="alamat" name="alamat" class="form-control" required>{{ old('alamat', $user->alamat) }}</textarea>
+                        <textarea id="alamat" name="alamat" class="form-control">{{ old('alamat', $user->alamat) }}</textarea>
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="nomorTelepon">Nomor Telepon</label>
-                        <input type="text" id="nomorTelepon" name="nomorTelepon" class="form-control" required
+                        <input type="text" id="nomorTelepon" name="nomorTelepon" class="form-control"
                             value="{{ old('nomorTelepon', $user->nomorTelepon) }}">
                     </div>
 
-                    {{-- ✅ Tambahan: Field Status --}}
+                    <div class="form-group mb-3">
+                        <label for="fotoKtp">Foto KTP</label>
+                        <input type="file" id="fotoKtp" name="fotoKtp" class="form-control">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="fotoRumah">Foto Rumah</label> {{-- Tambahan --}}
+                        <input type="file" id="fotoRumah" name="fotoRumah" class="form-control"> {{-- Tambahan --}}
+                    </div>
+
                     <div class="form-group mb-3">
                         <label for="status">Status</label>
                         <select id="status" name="status" class="form-control">
@@ -77,6 +92,7 @@
                         <button type="button" class="btn btn-success mt-4">Kembali</button>
                     </a>
                 </form>
+
             </div>
         </div>
     </div>

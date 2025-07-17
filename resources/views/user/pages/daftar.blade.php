@@ -1,5 +1,5 @@
 @extends('user.main')
-@section('title', 'Tambah User')
+@section('title', 'Form Daftar')
 
 @section('content')
     <div class="container mt-5">
@@ -8,7 +8,8 @@
                 <h4>Form Daftar</h4>
             </div>
             <div class="card-body">
-                <form id="formUser" action="{{ route('user.daftarUser') }}" method="POST">
+                <form id="formUser" action="{{ route('user.daftarUser') }}" method="POST" enctype="multipart/form-data">
+
                     @csrf
 
                     {{-- Tampilkan error validasi server --}}
@@ -32,20 +33,25 @@
                         <input type="email" id="email" name="email" class="form-control" required
                             value="{{ old('email') }}">
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="jenisKelamin">Jenis Kelamin</label>
-                        <select id="jenisKelamin" name="jenisKelamin" class="form-control" required>
-                            <option value="" disabled selected>Pilih jenis kelamin</option>
+                    <div class="form-group mb-4">
+                        <label for="jenisKelamin" class="fw-semibold text-dark">Jenis Kelamin</label>
+                        <select id="jenisKelamin" name="jenisKelamin"
+                            class="form-select border border-primary-subtle shadow-sm" required>
+                            <option value="" disabled {{ old('jenisKelamin') ? '' : 'selected' }}>Pilih jenis kelamin
+                            </option>
                             <option value="laki-laki" {{ old('jenisKelamin') == 'laki-laki' ? 'selected' : '' }}>Laki-laki
                             </option>
                             <option value="perempuan" {{ old('jenisKelamin') == 'perempuan' ? 'selected' : '' }}>Perempuan
                             </option>
                         </select>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="jenisBantuan">Jenis Bantuan</label>
-                        <select id="jenisBantuan" name="jenisBantuan" class="form-control" required>
-                            <option value="" disabled selected>Pilih jenis bantuan</option>
+
+                    <div class="form-group mb-4">
+                        <label for="jenisBantuan" class="fw-semibold text-dark">Jenis Bantuan</label>
+                        <select id="jenisBantuan" name="jenisBantuan"
+                            class="form-select border border-primary-subtle shadow-sm" required>
+                            <option value="" disabled {{ old('jenisBantuan') ? '' : 'selected' }}>Pilih jenis bantuan
+                            </option>
                             <option value="Kursi Roda" {{ old('jenisBantuan') == 'Kursi Roda' ? 'selected' : '' }}>Kursi
                                 Roda</option>
                             <option value="Tangan Palsu" {{ old('jenisBantuan') == 'Tangan Palsu' ? 'selected' : '' }}>
@@ -54,6 +60,7 @@
                                 Palsu</option>
                         </select>
                     </div>
+
                     <div class="form-group mb-3">
                         <label for="alamat">Alamat</label>
                         <textarea id="alamat" name="alamat" class="form-control" required>{{ old('alamat') }}</textarea>
@@ -64,10 +71,25 @@
                             value="{{ old('nomorTelepon') }}" placeholder="081234567890">
                     </div>
 
-                    <button type="button" id="btnSimpan" class="btn btn-primary mt-4">Tambah</button>
-                    <a href="{{ route('home') }}">
-                        <button type="button" class="btn btn-success mt-4">Kembali</button>
-                    </a>
+                    <div class="form-group mb-3">
+                        <label for="fotoKtp">Upload Foto KTP (jpg, jpeg, png)</label>
+                        <input type="file" id="fotoKtp" name="fotoKtp" class="form-control bg-white text-dark"
+                            accept=".jpg,.jpeg,.png">
+                    </div>
+
+
+                    <div class="mt-4 d-flex gap-2">
+                        <button type="button" id="btnSimpan" class="btn btn-outline-primary fw-semibold shadow-sm px-4">
+                            <i class="fas fa-plus me-1"></i> Tambah
+                        </button>
+
+                        <a href="{{ route('home') }}" class="text-decoration-none">
+                            <button type="button" class="btn btn-outline-success fw-semibold shadow-sm px-4">
+                                <i class="fas fa-arrow-left me-1"></i> Kembali
+                            </button>
+                        </a>
+                    </div>
+
                 </form>
             </div>
         </div>

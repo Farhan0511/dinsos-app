@@ -53,6 +53,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ Request::routeIs('admin.distribusi') ? 'active' : '' }}">
+                    <a href="{{ route('admin.distribusi') }}">
+                        <i class="fas fa-truck"></i>
+                        <p>Distribusi Bansos</p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ Request::routeIs('admin.laporan') ? 'active' : '' }}">
                     <a href="{{ route('admin.laporan') }}">
                         <i class="fas fa-file-alt"></i>

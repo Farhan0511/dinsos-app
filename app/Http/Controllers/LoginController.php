@@ -77,7 +77,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($login)) {
             $request->session()->regenerate();
-            return redirect()->route('loginUser')->with('success', 'Login berhasil!');
+            return redirect()->route('loginUser')->with('success', 'Regist berhasil!');
         }
 
         return redirect()->route('register')->with('failed', 'Email atau password salah.');

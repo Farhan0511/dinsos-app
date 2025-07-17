@@ -24,36 +24,46 @@
      <div class="sidebar-wrapper scrollbar scrollbar-inner">
          <div class="sidebar-content">
              <ul class="nav nav-secondary">
-                 <li class="nav-item active">
-                     <a href="{{ route('admin.dashboard') }}" class="collapsed" aria-expanded="false">
+                 <li class="nav-item {{ request()->routeIs('kepala-dinas.dashboard') ? 'active' : '' }}">
+                     <a href="{{ route('kepala-dinas.dashboard') }}">
                          <i class="fas fa-home"></i>
                          <p>Dashboard</p>
                      </a>
                  </li>
-                 <li class="nav-item">
+
+                 <li class="nav-item {{ request()->routeIs('kepala-dinas.penerima') ? 'active' : '' }}">
                      <a href="{{ route('kepala-dinas.penerima') }}">
                          <i class="fas fa-check"></i>
                          <p>Data Penerima</p>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a href="widgets.html">
+
+                 <li class="nav-item {{ request()->routeIs('kepala-dinas.pendaftar') ? 'active' : '' }}">
+                     <a href="{{ route('kepala-dinas.pendaftar') }}">
+                         <i class="fas fa-table"></i>
+                         <p>Data Pendaftar</p>
+                     </a>
+                 </li>
+
+                 <li class="nav-item {{ request()->routeIs('kepala-dinas.laporan') ? 'active' : '' }}">
+                     <a href="{{ route('kepala-dinas.laporan') }}">
                          <i class="fas fa-file-alt"></i>
                          <p>Laporan</p>
                      </a>
                  </li>
+
                  <li class="nav-item">
                      <a href="#"
                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                          <i class="fas fa-sign-out-alt"></i>
                          <p>Logout</p>
                      </a>
-
                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                          @csrf
                      </form>
                  </li>
              </ul>
+
          </div>
      </div>
  </div>

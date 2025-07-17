@@ -16,7 +16,7 @@
                         </div>
                         <div class="card-body">
                             <input type="text" placeholder="Search ..." class="form-control mb-3" />
-                            <table class="table table-striped">
+                            <table class="table table-striped table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -24,7 +24,11 @@
                                         <th>Email</th>
                                         <th>Alamat</th>
                                         <th>Jenis Kelamin</th>
+                                        <th>Jenis Bantuan</th>
                                         <th>No Telepon</th>
+                                        <th>Foto KTP</th>
+                                        <th>Foto Rumah</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,11 +39,34 @@
                                             <td>{{ $p->email }}</td>
                                             <td>{{ $p->alamat }}</td>
                                             <td>{{ $p->jenisKelamin }}</td>
+                                            <td>{{ $p->jenisBantuan }}</td>
                                             <td>{{ $p->nomorTelepon }}</td>
+                                            <td>
+                                                @if ($p->fotoKtp)
+                                                    <img src="{{ asset('views/image/' . $p->fotoKtp) }}" alt="Foto KTP"
+                                                        width="100">
+                                                @else
+                                                    <span class="text-muted">Belum Upload</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($p->fotoRumah)
+                                                    <img src="{{ asset('views/image/' . $p->fotoRumah) }}" alt="Foto Rumah"
+                                                        width="100">
+                                                @else
+                                                    <span class="text-muted">Belum Upload</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    <i class="fas fa-check-circle"></i> Diterima
+                                                </span>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+
 
                         </div>
                     </div>

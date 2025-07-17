@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('pengajuan_bansos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('id_user')->nullable(false);;
+            $table->foreign('id_user')->on('users')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('jenis_bantuan');
-            $table->string('foto_ktp')->nullable();
             $table->string('status')->default('belum diterima');
             $table->timestamps();
         });

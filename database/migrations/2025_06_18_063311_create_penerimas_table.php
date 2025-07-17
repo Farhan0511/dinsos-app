@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('penerimas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('nik', 20)->unique();
-            $table->text('alamat');
+            $table->unsignedBigInteger('id_user')->nullable(false);;
+            $table->foreign('id_user')->on('users')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->date('tanggal_terima');
             $table->timestamps();
         });

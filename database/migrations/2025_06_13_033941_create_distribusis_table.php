@@ -13,13 +13,8 @@ return new class extends Migration
     {
         Schema::create('distribusis', function (Blueprint $table) {
             $table->id();
-            $table->string('no')->unique();
-            $table->string('nama');
-            $table->string('email')->nullable();
-            $table->text('alamat');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->string('jenis_bantuan');
-            $table->string('no_telepon');
+            $table->unsignedBigInteger('id_user')->nullable(false);;
+            $table->foreign('id_user')->on('users')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('foto_penyerahan')->nullable();
             $table->timestamps();
         });

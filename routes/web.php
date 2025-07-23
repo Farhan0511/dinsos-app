@@ -10,6 +10,8 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DistribusiController;
 use App\Http\Controllers\KepalaDinasController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PendaftarController;
+use App\Http\Controllers\PenerimaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,58 +33,25 @@ Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('lo
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/penerima-bansos', [HomeController::class, 'penerimaBansos'])->name('penerimaBansos');
-
-// Halaman Berita untuk User
 Route::get('/berita', [BeritaController::class, 'beritaUser'])->name('user.berita');
 
-
-// Route user wajib login
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'redirectIfAdmin'], 'as' => 'user.'], function () {
     Route::get('/daftar', [HomeController::class, 'daftar'])->name('daftar');
     Route::post('/daftar', [UserController::class, 'create_post'])->name('daftarUser');
 });
 
-// Route Admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function () {
     Route::get('/dashboard', [HomeController::class, 'admin'])->name('dashboard');
 
-    Route::get('/data-pendaftar', [UserController::class, 'index'])->name('pendaftar');
-    Route::get('/data-penerima', [HomeController::class, 'penerima'])->name('penerima');
-
-    // Berita
-    Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
-    Route::post('/berita/create', [BeritaController::class, 'store'])->name('berita.store');
-    Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create');
-    Route::get('/berita/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
-    Route::put('/berita/{id}/edit', [BeritaController::class, 'update'])->name('berita.update');
-    Route::delete('/berita/{id}/edit', [BeritaController::class, 'destroy'])->name('berita.destroy');
-
-    // Pengguna
-    Route::delete('/hapus-user/{id}', [UserController::class, 'hapus_user'])->name('hapusUser');
-    Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('editUser');
-    Route::post('/edit-user/{id}', [UserController::class, 'edit_post'])->name('editUserPost');
-
-    // Distribusi
-    Route::get('/distribusi', [DistribusiController::class, 'distribusi'])->name('distribusi');
-    Route::get('/distribusi/create', [DistribusiController::class, 'create'])->name('createDistribusi');
-    Route::post('/distribusi', [DistribusiController::class, 'store'])->name('distribusiStore');
-    Route::get('/distribusi/{id}/edit', [DistribusiController::class, 'edit'])->name('editDistribusi');
-    Route::put('/distribusi/{id}', [DistribusiController::class, 'update'])->name('distribusiUpdate');
-    Route::delete('/distribusi/{id}', [DistribusiController::class, 'destroy'])->name('destroyDistribusi');
+    Route::resource('berita', BeritaController::class);
+    Route::resource('pendaftar', PendaftarController::class);
+    Route::resource('penerima', PenerimaController::class);
+    Route::resource('distribusi', DistribusiController::class);
 
     // Laporan
     Route::get('/laporan', [LaporanController::class, 'index'])->name('index');
     Route::get('/laporan', [LaporanController::class, 'laporan'])->name('laporan');
 });
-
-
-
-// Admin User Control
-Route::get('/admin/pendaftar', [AdminController::class, 'indexPendaftar'])->name('admin.pendaftar');
-Route::get('/admin/penerima', [AdminController::class, 'indexPenerima'])->name('admin.penerima');
-Route::get('/admin/pendaftar/{id}/edit', [AdminController::class, 'editUser'])->name('admin.editUser');
-Route::post('/admin/pendaftar/{id}/update-status', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');
-
 
 // Kepala Dinas
 // Dashboard Kepala Dinas

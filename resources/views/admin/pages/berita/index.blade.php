@@ -2,7 +2,7 @@
 
 @section('title', 'Daftar Berita')
 @section('content')
-    <div class="container py-4">
+    <div class="container mx-4">
         <h3 class="mb-4 fw-semibold text-center mt-5">Daftar Berita Dinsos</h3>
 
         @if (session('success'))
@@ -18,7 +18,7 @@
                     <th>Penulis</th>
                     <th>Tanggal</th>
                     <th>Kategori</th>
-                    <th>Gambar</th> {{-- Kolom gambar --}}
+                    <th>Gambar</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@
                         <td>{{ $berita->kategori }}</td>
                         <td>
                             @if ($berita->gambar)
-                                <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar Berita" width="100"
+                                <img src="{{ asset('uploads/berita/images/' . $berita->gambar) }}" alt="Gambar Berita" width="100"
                                     class="rounded">
                             @else
                                 <span class="text-muted">Tidak ada gambar</span>
@@ -57,7 +57,5 @@
                 @endforeach
             </tbody>
         </table>
-
-        {{ $beritas->links() }}
     </div>
 @endsection

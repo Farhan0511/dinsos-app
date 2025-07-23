@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Distribusi;
+use App\Models\Pendaftar;
+use App\Models\Penerima;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function admin()
     {
-        return view('admin.pages.dashboard');
+        $pendaftar = Pendaftar::count();
+        $penerima = Penerima::count();
+        $distribusi = Distribusi::count();
+        return view('admin.pages.dashboard', compact('pendaftar', 'penerima', 'distribusi'));
     }
 
-    public function inputBerita()
+    public function penerimaBansos()
     {
-        return view('admin.berita.input-berita');
+        $distribusi = Distribusi::where('id_user', Auth::user()->id)->with('GetUser')->get();
+        return view('user.pages.penerima', compact('distribusi'));
     }
 
     public function home()
@@ -21,23 +30,12 @@ class HomeController extends Controller
         return view('user.main');
     }
 
-    public function pendaftar(){
-        return view('admin.pages.pendaftar');
-    }
-
-    public function penerima(){
-        return view('admin.pages.penerima');
-    }
-
     public function daftar(){
-        return view('user.pages.daftar');
+        $user = User::find(Auth::user()->id);
+        return view('user.pages.daftar', compact('user'));
     }
 
     public function register(){
         return view('auth.pages.register');
-    }
-
-    public function berita(){
-        return view('user.pages.berita');
     }
 }

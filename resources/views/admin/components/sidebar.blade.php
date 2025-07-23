@@ -32,29 +32,29 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('admin.berita.*') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::routeIs('admin.berita') ? 'active' : '' }}">
                     <a href="{{ route('admin.berita.index') }}">
                         <i class="fas fa-pen-square"></i>
                         <p>Input Berita</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('admin.pendaftar') ? 'active' : '' }}">
-                    <a href="{{ route('admin.pendaftar') }}">
+                <li class="nav-item {{ Request::routeIs('admin.pendaftar.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.pendaftar.index') }}">
                         <i class="fas fa-table"></i>
                         <p>Data Pendaftar</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('admin.penerima') ? 'active' : '' }}">
-                    <a href="{{ route('admin.penerima') }}">
+                <li class="nav-item {{ Request::routeIs('admin.penerima.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.penerima.index') }}">
                         <i class="fas fa-check"></i>
                         <p>Data Penerima</p>
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('admin.distribusi') ? 'active' : '' }}">
-                    <a href="{{ route('admin.distribusi') }}">
+                <li class="nav-item {{ Request::routeIs('admin.distribusi.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.distribusi.index') }}">
                         <i class="fas fa-truck"></i>
                         <p>Distribusi Bansos</p>
                     </a>

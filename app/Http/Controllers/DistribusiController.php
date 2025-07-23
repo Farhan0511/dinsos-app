@@ -7,90 +7,99 @@ use Illuminate\Http\Request;
 
 class DistribusiController extends Controller
 {
-    // ✅ Tampilkan semua data distribusi
-    public function distribusi()
+    public function index()
     {
-        $data = Distribusi::all(); 
-        return view('admin.distribusi.distribusi', compact('data'));
+        $data = Distribusi::with('GetUser')->get(); 
+        return view('admin.pages.distribusi.index', compact('data'));
     }
 
-
-    // ✅ Tampilkan form tambah distribusi
     public function create()
     {
-        return view('admin.distribusi.create-distribusi');
+        return view('admin.pages.distribusi.create');
     }
 
-    // ✅ Simpan data distribusi baru
     public function store(Request $request)
     {
-
         $request->validate([
-            'nama' => 'required',
-            'email' => 'required|email',
-            'alamat' => 'required',
-            'jenis_kelamin' => 'required',
+            'id_user' => 'required',
             'jenis_bantuan' => 'required',
-            'no_telepon' => 'required',
             'foto_penyerahan' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $data = $request->all();
 
-        // Handle foto upload
-        if ($request->hasFile('foto_penyerahan')) {
-            $file = $request->file('foto_penyerahan');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/foto', $filename);
-            $data['foto_penyerahan'] = $filename;
-        }
+        $image_name = 'distribusi-'. time() . '.' . $request->foto_penyerahan->extension();
+        $request->foto_penyerahan->move(public_path('uploads/distribusi/images/'), $image_name);
 
         Distribusi::create($data);
 
-        return redirect()->route('admin.distribusi')->with('success', 'Data distribusi berhasil ditambahkan!');
+        return redirect()->route('admin.distribusi.index')->with('success', 'Data distribusi berhasil ditambahkan!');
     }
 
-    // ✅ Tampilkan form edit distribusi
     public function edit($id)
     {
-        $distribusi = Distribusi::findOrFail($id);
-        return view('admin.distribusi.edit-distribusi', compact('distribusi'));
+        $distribusi = Distribusi::where('id_user', $id)->with('GetUser')->first();
+
+        if (!$distribusi) {
+            return redirect()->back()->with('error', 'Distribusi tidak ditemukan.');
+        }
+
+        return view('admin.pages.distribusi.edit', compact('distribusi'));
     }
 
-    // ✅ Update data distribusi
     public function update(Request $request, $id)
     {
+        $distribusi = Distribusi::find($id);
+
+        if (!$distribusi) {
+            return redirect()->back()->with('error', 'Distribusi tidak ditemukan.');
+        }
+
         $request->validate([
-            'nama' => 'required',
-            'email' => 'required|email',
-            'alamat' => 'required',
-            'jenis_kelamin' => 'required',
+            'id_user' => 'required',
             'jenis_bantuan' => 'required',
-            'no_telepon' => 'required',
             'foto_penyerahan' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $distribusi = Distribusi::findOrFail($id);
-        $data = $request->all();
-
-        if ($request->hasFile('foto_penyerahan')) {
-            $file = $request->file('foto_penyerahan');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/foto', $filename);
-            $data['foto_penyerahan'] = $filename;
+        $updateData = [];
+        if (isset($request->id_user)) {
+            $updateData['id_user'] = $request->id_user;
+        }
+        if (isset($request->jenis_bantuan)) {
+            $updateData['jenis_bantuan'] = $request->jenis_bantuan;
+        }
+        if (isset($request->foto_penyerahan)) {
+            $file_path = public_path('uploads/distribusi/images/' . $distribusi->foto_penyerahan);
+    
+            if (file_exists($file_path) && is_file($file_path)) {
+                unlink($file_path);
+            }
+    
+            $image_name = 'distribusi-'. time() . '.' . $request->foto_penyerahan->extension();
+            $request->foto_penyerahan->move(public_path('uploads/distribusi/images/'), $image_name);
+            $updateData['foto_penyerahan'] = $image_name;
         }
 
-        $distribusi->update($data);
+        $distribusi->update($updateData);
 
-        return redirect()->route('admin.distribusi')->with('success', 'Data distribusi berhasil diupdate!');
+        return redirect()->route('admin.distribusi.index')->with('success', 'Data distribusi berhasil diupdate!');
     }
 
-    // ✅ Hapus data distribusi
     public function destroy($id)
     {
-        $distribusi = Distribusi::findOrFail($id);
+        $distribusi = Distribusi::find($id);
+        if (!$distribusi) {
+            return redirect()->back()->with('error', 'Distribusi tidak ditemukan.');
+        }
+
+        $file_path = public_path('uploads/distribusi/images/' . $distribusi->foto_penyerahan);
+
+        if (file_exists($file_path) && is_file($file_path)) {
+            unlink($file_path);
+        }
+
         $distribusi->delete();
 
-        return redirect()->route('admin.distribusi')->with('success', 'Data distribusi berhasil dihapus!');
+        return redirect()->route('admin.distribusi.index')->with('success', 'Data distribusi berhasil dihapus!');
     }
 }

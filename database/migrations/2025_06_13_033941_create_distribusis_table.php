@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('distribusis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user')->nullable(false);;
+            $table->unsignedBigInteger('id_user')->nullable(false);
             $table->foreign('id_user')->on('users')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->enum('jenisBantuan', ['Kursi Roda', 'Kaki Palsu', 'Tangan Palsu'])->nullable();
             $table->string('foto_penyerahan')->nullable();
             $table->timestamps();
         });

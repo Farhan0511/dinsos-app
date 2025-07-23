@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pendaftar extends Model
 {
     protected $fillable = [
-        'nama',
-        'nik',
-        'alamat',
-        'tanggal_daftar',
+        'id_user', 'jenisBantuan', 'status'
     ];
+
+    public function GetUser()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

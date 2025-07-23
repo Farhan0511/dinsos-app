@@ -9,7 +9,7 @@
                 <h4 class="mb-0 text-center">Form Distribusi Bantuan</h4>
             </div>
             <div class="card-body">
-               <form action="{{ route('admin.distribusiStore') }}" method="POST" enctype="multipart/form-data">
+               <form action="{{ route('admin.distribusi.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     {{-- nama --}}
@@ -78,7 +78,7 @@
                     {{-- Tombol Aksi --}}
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ route('admin.distribusi') }}" class="btn btn-danger">Batal</a>
+                        <a href="{{ route('admin.distribusi.index') }}" class="btn btn-danger">Batal</a>
                     </div>
                 </form>
             </div>

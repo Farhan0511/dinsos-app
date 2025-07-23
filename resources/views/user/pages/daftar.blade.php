@@ -24,24 +24,24 @@
                     @endif
 
                     <div class="form-group mb-3">
-                        <label for="nama">Nama</label>
-                        <input type="text" id="nama" name="nama" class="form-control" required
-                            value="{{ old('nama') }}">
+                        <label for="nama">NIK KTP</label>
+                        <input type="text" id="nik" name="nik" class="form-control" required
+                            value="{{ old('nik', $user->nik) }}">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required
-                            value="{{ old('email') }}">
+                        <label for="nama">Nama</label>
+                        <input type="text" id="nama" name="nama" class="form-control" required
+                            value="{{ old('nama', $user->nama) }}">
                     </div>
                     <div class="form-group mb-4">
                         <label for="jenisKelamin" class="fw-semibold text-dark">Jenis Kelamin</label>
                         <select id="jenisKelamin" name="jenisKelamin"
                             class="form-select border border-primary-subtle shadow-sm" required>
-                            <option value="" disabled {{ old('jenisKelamin') ? '' : 'selected' }}>Pilih jenis kelamin
+                            <option value="" disabled selected>Pilih jenis kelamin
                             </option>
-                            <option value="laki-laki" {{ old('jenisKelamin') == 'laki-laki' ? 'selected' : '' }}>Laki-laki
+                            <option value="laki-laki" {{ $user->jenisKelamin == 'laki-laki' ? 'selected' : '' }}>Laki-laki
                             </option>
-                            <option value="perempuan" {{ old('jenisKelamin') == 'perempuan' ? 'selected' : '' }}>Perempuan
+                            <option value="perempuan" {{ $user->jenisKelamin == 'perempuan' ? 'selected' : '' }}>Perempuan
                             </option>
                         </select>
                     </div>
@@ -50,13 +50,13 @@
                         <label for="jenisBantuan" class="fw-semibold text-dark">Jenis Bantuan</label>
                         <select id="jenisBantuan" name="jenisBantuan"
                             class="form-select border border-primary-subtle shadow-sm" required>
-                            <option value="" disabled {{ old('jenisBantuan') ? '' : 'selected' }}>Pilih jenis bantuan
+                            <option value="" disabled selected>Pilih jenis bantuan
                             </option>
-                            <option value="Kursi Roda" {{ old('jenisBantuan') == 'Kursi Roda' ? 'selected' : '' }}>Kursi
+                            <option value="Kursi Roda" {{ $user->jenisBantuan == 'Kursi Roda' ? 'selected' : '' }}>Kursi
                                 Roda</option>
-                            <option value="Tangan Palsu" {{ old('jenisBantuan') == 'Tangan Palsu' ? 'selected' : '' }}>
+                            <option value="Tangan Palsu" {{ $user->jenisBantuan == 'Tangan Palsu' ? 'selected' : '' }}>
                                 Tangan Palsu</option>
-                            <option value="Kaki Palsu" {{ old('jenisBantuan') == 'Kaki Palsu' ? 'selected' : '' }}>Kaki
+                            <option value="Kaki Palsu" {{ $user->jenisBantuan == 'Kaki Palsu' ? 'selected' : '' }}>Kaki
                                 Palsu</option>
                         </select>
                     </div>
@@ -73,7 +73,25 @@
 
                     <div class="form-group mb-3">
                         <label for="fotoKtp">Upload Foto KTP (jpg, jpeg, png)</label>
+                        @if ($user->fotoKtp)
+                            <div class="mb-2">
+                                <img src="{{ asset('uploads/users/ktp/' . $user->fotoKtp) }}" alt="Gambar Ktp" width="200"
+                                    class="rounded-3 shadow-sm">
+                            </div>
+                        @endif
                         <input type="file" id="fotoKtp" name="fotoKtp" class="form-control bg-white text-dark"
+                            accept=".jpg,.jpeg,.png">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="fotoRumah">Upload Foto Rumah (jpg, jpeg, png)</label>
+                        @if ($user->fotoRumah)
+                            <div class="mb-2">
+                                <img src="{{ asset('uploads/users/rumah/' . $user->fotoRumah) }}" alt="Gambar Rumah" width="200"
+                                    class="rounded-3 shadow-sm">
+                            </div>
+                        @endif
+                        <input type="file" id="fotoRumah" name="fotoRumah" class="form-control bg-white text-dark"
                             accept=".jpg,.jpeg,.png">
                     </div>
 

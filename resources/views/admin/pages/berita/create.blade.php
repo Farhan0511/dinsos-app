@@ -9,12 +9,11 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <div class="conteiner">
+        <div class="container">
             <div class="card-body">
                 <form id="formBerita" action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    {{-- Tampilkan error validasi server --}}
                     @if ($errors->any())
                         <div style="color: red;">
                             <ul>
@@ -47,7 +46,6 @@
                             <option value="Bantuan Sosial">Bantuan Sosial</option>
                             <option value="Pendidikan">Pendidikan</option>
                             <option value="Kesehatan">Kesehatan</option>
-                            <!-- Tambahkan kategori lain sesuai kebutuhan -->
                         </select>
                     </div>
 

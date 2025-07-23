@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('pendaftars', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user')->nullable(false);;
+            $table->unsignedBigInteger('id_user')->nullable(false);
             $table->foreign('id_user')->on('users')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->date('tanggal_daftar');
+            $table->enum('jenisBantuan', ['Kursi Roda', 'Kaki Palsu', 'Tangan Palsu'])->nullable();
+            $table->enum('status', ['diterima', 'ditolak', 'menunggu'])->default('menunggu');
             $table->timestamps();
         });
     }

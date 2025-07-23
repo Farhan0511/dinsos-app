@@ -10,13 +10,13 @@ class Distribusi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'no',
-        'nama',
-        'email',
-        'alamat',
-        'jenis_kelamin',
+        'id_user',
         'jenis_bantuan',
-        'no_telepon',
         'foto_penyerahan',
     ];
+
+    public function GetUser()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

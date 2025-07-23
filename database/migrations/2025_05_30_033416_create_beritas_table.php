@@ -17,8 +17,10 @@ return new class extends Migration
         $table->string('penulis');
         $table->date('tanggal');
         $table->string('kategori');
-        $table->string('gambar')->nullable(); // simpan nama file gambar
+        $table->string('gambar')->nullable();
         $table->text('isi');
+        $table->unsignedBigInteger('id_user')->nullable(false);
+        $table->foreign('id_user')->on('users')->references('id')->onUpdate('CASCADE')->onDelete('CASCADE');
         $table->timestamps();
     });
 }

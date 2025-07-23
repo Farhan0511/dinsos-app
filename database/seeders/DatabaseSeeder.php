@@ -20,16 +20,26 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
         DB::table('users')->insert([
-            'nama' => 'Mochamad Farhan Ferdiansyah',
-            'email' => 'farhan@gmail.com',
-            'alamat' => 'Serang Banten',
-            'jenisKelamin' => 'laki-laki',
-            'jenisBantuan' => 'Kursi Roda',
-            'nomorTelepon' => '084651561',
-            'fotoKtp' => '21dinsos.png',
+            'nama' => 'admin',
+            'email' => 'admin@gmail.com',
             'role' => 'admin',
-            'password' => Hash::make('kontol123'),
+            'password' => Hash::make('password'),
+        ]);
+
+        DB::table('users')->insert([
+            'nama' => 'kepaladinas',
+            'email' => 'kepaladinas@gmail.com',
+            'role' => 'kepala dinas',
+            'password' => Hash::make('password'),
+        ]);
+
+        DB::table('users')->insert([
+            'nama' => 'user',
+            'email' => 'user@gmail.com',
+            'role' => 'user',
+            'password' => Hash::make('password'),
         ]);
     }
 }

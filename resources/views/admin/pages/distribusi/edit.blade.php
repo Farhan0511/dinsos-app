@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header text-center fw-bold">Edit Data Distribusi</div>
                 <div class="card-body">
-                    <form action="{{ route('admin.distribusiStore', $distribusi->id) }}" method="POST"
+                    <form action="{{ route('admin.distribusi.update', $distribusi->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -53,14 +53,14 @@
                         <div class="form-group mb-3">
                             <label for="foto_penyerahan">Foto Penyerahan</label><br>
                             @if ($distribusi->foto_penyerahan)
-                                <img src="{{ asset('storage/' . $distribusi->foto_penyerahan) }}" alt="Foto"
+                                <img src="{{ asset('uploads/distribusi/images/' . $distribusi->foto_penyerahan) }}" alt="Foto"
                                     width="100" class="mb-2">
                             @endif
                             <input type="file" name="foto_penyerahan" class="form-control">
                         </div>
 
                         <div class="text-end">
-                            <a href="{{ route('admin.distribusi') }}" class="btn btn-secondary">Kembali</a>
+                            <a href="{{ route('admin.distribusi.index') }}" class="btn btn-secondary">Kembali</a>
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
                     </form>

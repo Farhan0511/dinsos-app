@@ -68,7 +68,7 @@
                         <label for="gambar" class="form-label fw-semibold">Upload Gambar</label>
                         @if ($berita->gambar)
                             <div class="mb-2">
-                                <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar Berita" width="200"
+                                <img src="{{ asset('uploads/berita/images/' . $berita->gambar) }}" alt="Gambar Berita" width="200"
                                     class="rounded-3 shadow-sm">
                             </div>
                         @endif

@@ -16,7 +16,13 @@ class Berita extends Model
         'kategori',
         'gambar',
         'isi',
+        'id_user'
     ];
 
     protected $dates = ['tanggal'];
+
+    public function GetUser()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

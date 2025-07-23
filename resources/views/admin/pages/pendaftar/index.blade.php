@@ -13,14 +13,14 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Data Pendaftar</div>
-                            <form method="GET" action="{{ route('admin.pendaftar') }}" class="d-flex">
+                            {{-- <form method="GET" action="{{ route('admin.pendaftar.index') }}" class="d-flex">
                                 <input type="text" name="search" placeholder="Search ..." class="form-control mt-3 me-2"
                                     value="{{ request('search') }}">
                                 <button type="submit" class="btn btn-secondary mt-3">Cari</button>
 
-                                <a href="{{ route('admin.pendaftar') }}"
+                                <a href="{{ route('admin.pendaftar.index') }}"
                                     class="btn btn-outline-secondary mt-3 ms-2">Refresh</a>
-                            </form>
+                            </form> --}}
                         </div>
 
                         <div class="card-body p-0">
@@ -33,7 +33,6 @@
                                             <th>Email</th>
                                             <th>Alamat</th>
                                             <th>Jenis Kelamin</th>
-                                            <th>Jenis Bantuan</th>
                                             <th>No Telepon</th>
                                             <th>Foto KTP</th>
                                             <th>Foto Rumah</th>
@@ -45,26 +44,25 @@
                                         @foreach ($data as $d)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $d->nama }}</td>
-                                                <td>{{ $d->email }}</td>
-                                                <td>{{ $d->alamat }}</td>
-                                                <td>{{ $d->jenisKelamin }}</td>
-                                                <td>{{ $d->jenisBantuan }}</td>
-                                                <td>{{ $d->nomorTelepon }}</td>
+                                                <td>{{ $d->GetUser->nama }}</td>
+                                                <td>{{ $d->GetUser->email }}</td>
+                                                <td>{{ $d->GetUser->alamat }}</td>
+                                                <td>{{ $d->GetUser->jenisKelamin }}</td>
+                                                <td>{{ $d->GetUser->nomorTelepon }}</td>
                                                 <td>
                                                     @if ($d->fotoKtp)
-                                                        <img src="{{ asset('views/image/' . $d->fotoKtp) }}" alt="Foto KTP"
+                                                        <img src="{{ asset('uploads/users/ktp/' . $d->GetUser->fotoKtp) }}" alt="Foto KTP"
                                                             width="100" class="zoomable-img"
-                                                            data-img="{{ asset('views/image/' . $d->fotoKtp) }}">
+                                                            data-img="{{ asset('uploads/users/ktp/' . $d->GetUser->fotoKtp) }}">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     @if ($d->fotoRumah)
-                                                        <img src="{{ asset('views/image/' . $d->fotoRumah) }}"
+                                                        <img src="{{ asset('uploads/users/rumah/' . $d->GetUser->fotoRumah) }}"
                                                             alt="Foto Rumah" width="100" class="zoomable-img"
-                                                            data-img="{{ asset('views/image/' . $d->fotoRumah) }}">
+                                                            data-img="{{ asset('uploads/users/rumah/' . $d->GetUser->fotoRumah) }}">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
@@ -81,7 +79,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.editUser', $d->id) }}"
+                                                    <a href="{{ route('admin.pendaftar.edit', $d->id) }}"
                                                         class="btn btn-sm btn-primary" title="Edit Status">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
@@ -92,7 +90,7 @@
                                                     </button>
 
                                                     <form id="form-delete-{{ $d->id }}"
-                                                        action="{{ route('admin.hapusUser', $d->id) }}" method="POST"
+                                                        action="{{ route('admin.pendaftar.destroy', $d->id) }}" method="POST"
                                                         style="display:none;">
                                                         @csrf
                                                         @method('DELETE')

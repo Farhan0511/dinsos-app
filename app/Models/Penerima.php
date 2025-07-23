@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Penerima extends Model
 {
     protected $fillable = [
-        'nama',
-        'nik',
-        'alamat',
-        'tanggal_terima',
+        'id_user', 'jenisBantuan', 'status'
     ];
+
+    public function GetUser()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

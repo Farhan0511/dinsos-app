@@ -9,7 +9,7 @@
                 <div class="col">
                     <div class="card h-100 shadow-sm border-0">
                         @if ($berita->gambar)
-                            <img src="{{ asset('storage/' . $berita->gambar) }}"
+                            <img src="{{ asset('uploads/berita/images/' . $berita->gambar) }}"
                                 class="card-img-top" alt="Gambar Berita"
                                 style="height: 220px; object-fit: cover;">
                         @endif

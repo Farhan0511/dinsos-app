@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Distribusi;
+use App\Models\Penerima;
 use Illuminate\Http\Request;
 
 class DistribusiController extends Controller
@@ -15,14 +16,14 @@ class DistribusiController extends Controller
 
     public function create()
     {
-        return view('admin.pages.distribusi.create');
+        $penerima = Penerima::with('GetUser')->get();
+        return view('admin.pages.distribusi.create', compact('penerima'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'id_user' => 'required',
-            'jenis_bantuan' => 'required',
             'foto_penyerahan' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -38,13 +39,14 @@ class DistribusiController extends Controller
 
     public function edit($id)
     {
-        $distribusi = Distribusi::where('id_user', $id)->with('GetUser')->first();
+        $distribusi = Distribusi::find($id);
+        $penerima = Penerima::with('GetUser')->get();
 
         if (!$distribusi) {
             return redirect()->back()->with('error', 'Distribusi tidak ditemukan.');
         }
 
-        return view('admin.pages.distribusi.edit', compact('distribusi'));
+        return view('admin.pages.distribusi.edit', compact('distribusi', 'penerima'));
     }
 
     public function update(Request $request, $id)
@@ -57,16 +59,12 @@ class DistribusiController extends Controller
 
         $request->validate([
             'id_user' => 'required',
-            'jenis_bantuan' => 'required',
             'foto_penyerahan' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $updateData = [];
         if (isset($request->id_user)) {
             $updateData['id_user'] = $request->id_user;
-        }
-        if (isset($request->jenis_bantuan)) {
-            $updateData['jenis_bantuan'] = $request->jenis_bantuan;
         }
         if (isset($request->foto_penyerahan)) {
             $file_path = public_path('uploads/distribusi/images/' . $distribusi->foto_penyerahan);

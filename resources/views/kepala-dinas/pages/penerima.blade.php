@@ -43,14 +43,14 @@
                                             <td>{{ $p->nomorTelepon }}</td>
                                             <td>
                                                 @if ($p->fotoKtp)
-                                                    <img src="{{ asset('views/image/' . $p->fotoKtp) }}" alt="Foto KTP" width="100">
+                                                    <img src="{{ asset('uploads/users/ktp/' . $p->fotoKtp) }}" alt="Foto KTP" width="100">
                                                 @else
                                                     <span class="text-muted">Belum Upload</span>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($p->fotoRumah)
-                                                    <img src="{{ asset('views/image/' . $p->fotoRumah) }}" alt="Foto Rumah" width="100">
+                                                    <img src="{{ asset('uploads/users/rumah/' . $p->fotoRumah) }}" alt="Foto Rumah" width="100">
                                                 @else
                                                     <span class="text-muted">Belum Upload</span>
                                                 @endif

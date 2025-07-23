@@ -14,6 +14,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Data Distribusi Bantuan</div>
+                            <a href="{{ route('admin.distribusi.create') }}" class="btn btn-primary mb-3">+ Tambah Distribusi</a>
                             {{-- <form method="GET" action="{{ route('admin.pendaftar.index') }}" class="d-flex">
                                 <input type="text" name="search" placeholder="Search ..." class="form-control mt-3 me-2"
                                     value="{{ request('search') }}">
@@ -34,6 +35,7 @@
                                             <th>Email</th>
                                             <th>Alamat</th>
                                             <th>Jenis Kelamin</th>
+                                            <th>Jenis Bantuan</th>
                                             <th>No Telepon</th>
                                             <th>Foto Penyerahan</th>
                                             <th>Action</th>
@@ -46,9 +48,9 @@
                                                 <td>{{ $distribusi->GetUser->nama }}</td>
                                                 <td>{{ $distribusi->GetUser->email }}</td>
                                                 <td>{{ $distribusi->GetUser->alamat }}</td>
-                                                <td>{{ $distribusi->GetUser->jenis_kelamin }}</td>
-                                                <td>{{ $distribusi->GetUser->jenis_bantuan }}</td>
-                                                <td>{{ $distribusi->GetUser->no_telepon }}</td>
+                                                <td>{{ ucwords($distribusi->GetUser->jenisKelamin) }}</td>
+                                                <td>{{ $distribusi->GetUser->jenisBantuan }}</td>
+                                                <td>{{ $distribusi->GetUser->nomorTelepon }}</td>
                                                 <td>
                                                     @if ($distribusi->foto_penyerahan)
                                                         <img src="{{ asset('uploads/distribusi/images/' . $distribusi->foto_penyerahan) }}" width="80"

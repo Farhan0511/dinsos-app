@@ -21,8 +21,8 @@ class HomeController extends Controller
 
     public function penerimaBansos()
     {
-        $distribusi = Distribusi::where('id_user', Auth::user()->id)->with('GetUser')->get();
-        return view('user.pages.penerima', compact('distribusi'));
+        $distribusis = Distribusi::with('GetUser')->get();
+        return view('user.pages.penerima', compact('distribusis'));
     }
 
     public function home()

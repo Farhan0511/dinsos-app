@@ -44,16 +44,16 @@
                                                 <td>{{ $p->GetUser->jenisBantuan }}</td>
                                                 <td>{{ $p->GetUser->nomorTelepon }}</td>
                                                 <td>
-                                                    @if ($p->fotoKtp)
-                                                        <img src="{{ asset('views/image/' . $p->fotoKtp) }}" alt="Foto KTP"
+                                                    @if ($p->GetUser->fotoKtp)
+                                                        <img src="{{ asset('uploads/users/ktp/' . $p->GetUser->fotoKtp) }}" alt="Foto KTP"
                                                             width="100">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($p->fotoRumah)
-                                                        <img src="{{ asset('views/image/' . $p->fotoRumah) }}" alt="Foto Rumah"
+                                                    @if ($p->GetUser->fotoRumah)
+                                                        <img src="{{ asset('uploads/users/rumah/' . $p->GetUser->fotoRumah) }}" alt="Foto Rumah"
                                                             width="100">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>

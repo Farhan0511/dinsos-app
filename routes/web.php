@@ -35,9 +35,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/penerima-bansos', [HomeController::class, 'penerimaBansos'])->name('penerimaBansos');
 Route::get('/berita', [BeritaController::class, 'beritaUser'])->name('user.berita');
 
-Route::group(['prefix' => 'user', 'middleware' => ['auth', 'redirectIfAdmin'], 'as' => 'user.'], function () {
+Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function () {
     Route::get('/daftar', [HomeController::class, 'daftar'])->name('daftar');
-    Route::post('/daftar', [UserController::class, 'create_post'])->name('daftarUser');
+    Route::post('/daftar/{id}', [PendaftarController::class, 'store'])->name('pendaftar.store');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function () {

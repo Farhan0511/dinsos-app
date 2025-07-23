@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('alamat')->nullable();
             $table->enum('jenisKelamin', ['laki-laki', 'perempuan'])->nullable();
-            $table->bigInteger('nomorTelepon')->nullable();
+            $table->string('nomorTelepon')->nullable();
             $table->string('fotoKtp')->nullable();
             $table->string('fotoRumah')->nullable();
             $table->enum('jenisBantuan', ['Kursi Roda', 'Kaki Palsu', 'Tangan Palsu'])->nullable();

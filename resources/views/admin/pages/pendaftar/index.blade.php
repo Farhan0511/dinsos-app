@@ -50,7 +50,7 @@
                                                 <td>{{ $d->GetUser->jenisKelamin }}</td>
                                                 <td>{{ $d->GetUser->nomorTelepon }}</td>
                                                 <td>
-                                                    @if ($d->fotoKtp)
+                                                    @if ($d->GetUser->fotoKtp)
                                                         <img src="{{ asset('uploads/users/ktp/' . $d->GetUser->fotoKtp) }}" alt="Foto KTP"
                                                             width="100" class="zoomable-img"
                                                             data-img="{{ asset('uploads/users/ktp/' . $d->GetUser->fotoKtp) }}">
@@ -59,7 +59,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($d->fotoRumah)
+                                                    @if ($d->GetUser->fotoRumah)
                                                         <img src="{{ asset('uploads/users/rumah/' . $d->GetUser->fotoRumah) }}"
                                                             alt="Foto Rumah" width="100" class="zoomable-img"
                                                             data-img="{{ asset('uploads/users/rumah/' . $d->GetUser->fotoRumah) }}">
@@ -72,7 +72,7 @@
                                                         <span class="text-success">
                                                             <i class="fas fa-check-circle"></i> Diterima
                                                         </span>
-                                                    @else
+                                                    @elseif($d->status == 'belum diterima')
                                                         <span class="text-danger">
                                                             <i class="fas fa-times-circle"></i> Belum Diterima
                                                         </span>

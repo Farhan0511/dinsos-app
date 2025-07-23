@@ -10,10 +10,6 @@
             <div class="w-100">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Data Distribusi Bantuan</div>
-                        </div>
-
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover mb-0">
@@ -21,27 +17,22 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
-                                            <th>Email</th>
                                             <th>Alamat</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>No Telepon</th>
+                                            <th>Jenis Bantuan</th>
                                             <th>Foto Penyerahan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($distribusi as $distribusi)
+                                        @foreach ($distribusis as $p)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $distribusi->GetUser->nama }}</td>
-                                                <td>{{ $distribusi->GetUser->email }}</td>
-                                                <td>{{ $distribusi->GetUser->alamat }}</td>
-                                                <td>{{ $distribusi->GetUser->jenis_kelamin }}</td>
-                                                <td>{{ $distribusi->GetUser->jenis_bantuan }}</td>
-                                                <td>{{ $distribusi->GetUser->no_telepon }}</td>
+                                                <td>{{ $p->GetUser->nama }}</td>
+                                                <td>{{ $p->GetUser->alamat }}</td>
+                                                <td>{{ $p->GetUser->jenisBantuan }}</td>
                                                 <td>
-                                                    @if ($distribusi->foto_penyerahan)
-                                                        <img src="{{ asset('uploads/distribusi/images/' . $distribusi->foto_penyerahan) }}" width="80"
-                                                            alt="Foto Penyerahan">
+                                                    @if ($p->foto_penyerahan)
+                                                        <img src="{{ asset('uploads/distribusi/images/' . $p->foto_penyerahan) }}" alt="Foto Penyerahan"
+                                                            width="100">
                                                     @else
                                                         <span class="text-muted">Tidak Ada</span>
                                                     @endif
@@ -50,7 +41,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div> <!-- /.table-responsive -->
+                            </div>
                         </div>
                     </div>
                 </div>

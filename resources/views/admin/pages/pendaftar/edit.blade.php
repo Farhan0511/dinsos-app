@@ -1,16 +1,17 @@
 @extends('admin.main')
-@section('title', 'Edit User')
+@section('title', 'Edit Pendaftar')
 
 @section('content')
     <div class="container ">
         <div class="card">
             <div class="card-header">
-                <h4>Form Edit User</h4>
+                <h4>Form Edit Pendaftar</h4>
             </div>
             <div class="card-body">
                 <form id="formUser" action="{{ route('admin.pendaftar.update', $pendaftar->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
 
                     {{-- Tampilkan error validasi server --}}
                     @if ($errors->any())
@@ -40,19 +41,19 @@
                         <select id="jenisKelamin" name="jenisKelamin" class="form-control" disabled>
                             <option value="laki-laki" {{ $pendaftar->GetUser->jenisKelamin == 'laki-laki' ? 'selected' : '' }}>Laki-laki
                             </option>
-                            <option value="perempuan"
-                                {{ strtolower($user->jenisKelamin) == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="perempuan" {{ $pendaftar->GetUser->jenisKelamin == 'perempuan' ? 'selected' : '' }}>Perempuan
+                            </option>
                         </select>
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="jenisBantuan">Jenis Bantuan</label>
                         <select id="jenisBantuan" name="jenisBantuan" class="form-control" disabled>
-                            <option value="Kursi Roda" {{ $pendaftar->jenisBantuan == 'Kursi Roda' ? 'selected' : '' }}>Kursi
+                            <option value="Kursi Roda" {{ $pendaftar->GetUser->jenisBantuan == 'Kursi Roda' ? 'selected' : '' }}>Kursi
                                 Roda</option>
-                            <option value="Tangan Palsu" {{ $$pendaftar->jenisBantuan == 'Tangan Palsu' ? 'selected' : '' }}>
+                            <option value="Tangan Palsu" {{ $pendaftar->GetUser->jenisBantuan == 'Tangan Palsu' ? 'selected' : '' }}>
                                 Tangan Palsu</option>
-                            <option value="Kaki Palsu" {{ $$pendaftar->jenisBantuan == 'Kaki Palsu' ? 'selected' : '' }}>Kaki
+                            <option value="Kaki Palsu" {{ $pendaftar->GetUser->jenisBantuan == 'Kaki Palsu' ? 'selected' : '' }}>Kaki
                                 Palsu</option>
                         </select>
                     </div>
@@ -66,6 +67,21 @@
                         <label for="nomorTelepon">Nomor Telepon</label>
                         <input type="text" id="nomorTelepon" name="nomorTelepon" class="form-control" disabled
                             value="{{ old('nomorTelepon', $pendaftar->GetUser->nomorTelepon) }}">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="jenisBantuan" class="fw-semibold text-dark">Jenis Bantuan</label>
+                        <select id="jenisBantuan" name="jenisBantuan"
+                            class="form-select border border-primary-subtle shadow-sm" required disabled>
+                            <option value="" disabled selected>Pilih jenis bantuan
+                            </option>
+                            <option value="Kursi Roda" {{ $pendaftar->GetUser->jenisBantuan == 'Kursi Roda' ? 'selected' : '' }}>Kursi
+                                Roda</option>
+                            <option value="Tangan Palsu" {{ $pendaftar->GetUser->jenisBantuan == 'Tangan Palsu' ? 'selected' : '' }}>
+                                Tangan Palsu</option>
+                            <option value="Kaki Palsu" {{ $pendaftar->GetUser->jenisBantuan == 'Kaki Palsu' ? 'selected' : '' }}>Kaki
+                                Palsu</option>
+                        </select>
                     </div>
 
                     <div class="form-group mb-3">
@@ -93,8 +109,7 @@
                     <div class="form-group mb-3">
                         <label for="status">Status</label>
                         <select id="status" name="status" class="form-control">
-                            <option value="menunggu" {{ $pendaftar->status == 'menunggu' ? 'selected' : '' }}>Menunggu</option>
-                            <option value="ditolak" {{ $pendaftar->status == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                            <option value="belum diterima" {{ $pendaftar->status == 'belum diterima' ? 'selected' : '' }}>Belum Diterima</option>
                             <option value="diterima" {{ $pendaftar->status == 'diterima' ? 'selected' : '' }}>Diterima</option>
                         </select>
                     </div>

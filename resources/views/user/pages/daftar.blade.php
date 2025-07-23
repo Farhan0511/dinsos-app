@@ -8,7 +8,7 @@
                 <h4>Form Daftar</h4>
             </div>
             <div class="card-body">
-                <form id="formUser" action="{{ route('user.daftarUser') }}" method="POST" enctype="multipart/form-data">
+                <form id="formUser" action="{{ route('user.pendaftar.store', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
 
                     @csrf
 
@@ -63,12 +63,12 @@
 
                     <div class="form-group mb-3">
                         <label for="alamat">Alamat</label>
-                        <textarea id="alamat" name="alamat" class="form-control" required>{{ old('alamat') }}</textarea>
+                        <textarea id="alamat" name="alamat" class="form-control" required value="{{ old('alamat', $user->alamat) }}"></textarea>
                     </div>
                     <div class="form-group mb-3">
                         <label for="nomorTelepon">Nomor Telepon</label>
                         <input type="text" id="nomorTelepon" name="nomorTelepon" class="form-control"
-                            value="{{ old('nomorTelepon') }}" placeholder="081234567890">
+                            value="{{ old('nomorTelepon', $user->nomorTelepon) }}" placeholder="081234567890">
                     </div>
 
                     <div class="form-group mb-3">
@@ -118,31 +118,21 @@
 
     <script>
         document.getElementById('btnSimpan').addEventListener('click', function() {
+            const nik = document.getElementById('nik').value.trim();
             const nama = document.getElementById('nama').value.trim();
-            const email = document.getElementById('email').value.trim();
             const alamat = document.getElementById('alamat').value.trim();
-            const nomor = document.getElementById('nomorTelepon').value.trim();
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const nomorPattern = /^[0-9]{10,15}$/;
 
+            if (!nik) {
+                Swal.fire('Gagal!', 'NIK tidak boleh kosong.', 'error');
+                return;
+            }
             if (!nama) {
                 Swal.fire('Gagal!', 'Nama tidak boleh kosong.', 'error');
                 return;
             }
-            if (!email) {
-                Swal.fire('Gagal!', 'Email tidak boleh kosong.', 'error');
-                return;
-            }
-            if (!emailPattern.test(email)) {
-                Swal.fire('Gagal!', 'Format email tidak valid.', 'error');
-                return;
-            }
             if (!alamat) {
                 Swal.fire('Gagal!', 'Alamat tidak boleh kosong.', 'error');
-                return;
-            }
-            if (nomor && !nomorPattern.test(nomor)) {
-                Swal.fire('Gagal!', 'Nomor telepon harus 10–15 digit angka.', 'error');
                 return;
             }
 

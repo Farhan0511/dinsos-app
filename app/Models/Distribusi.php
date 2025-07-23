@@ -11,7 +11,6 @@ class Distribusi extends Model
 
     protected $fillable = [
         'id_user',
-        'jenis_bantuan',
         'foto_penyerahan',
     ];
 

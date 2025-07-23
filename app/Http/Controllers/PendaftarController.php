@@ -7,6 +7,7 @@ use App\Models\Pendaftar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Penerima;
 use Illuminate\Support\Facades\Hash;
 
 class PendaftarController extends Controller
@@ -40,22 +41,22 @@ class PendaftarController extends Controller
         if (isset($request->nik)) {
             $updateData['nik'] = $request->nik;            
         }
-        else if (isset($request->nama)) {
+        if (isset($request->nama)) {
             $updateData['nama'] = $request->nama;            
         }
-        else if (isset($request->alamat)) {
+        if (isset($request->alamat)) {
             $updateData['alamat'] = $request->alamat;            
         }
-        else if (isset($request->jenisKelamin)) {
+        if (isset($request->jenisKelamin)) {
             $updateData['jenisKelamin'] = $request->jenisKelamin;            
         }
-        else if (isset($request->jenisBantuan)) {
+        if (isset($request->jenisBantuan)) {
             $updateData['jenisBantuan'] = $request->jenisBantuan;            
         }
-        else if (isset($request->nomorTelepon)) {
+        if (isset($request->nomorTelepon)) {
             $updateData['nomorTelepon'] = $request->nomorTelepon;            
         }
-        else if (isset($request->fotoKtp)) {
+        if (isset($request->fotoKtp)) {
             $file_ktp = public_path('uploads/users/ktp/' . $user->fotoKtp);
 
             if (file_exists($file_ktp) && is_file($file_ktp)) {
@@ -63,10 +64,10 @@ class PendaftarController extends Controller
             }
 
             $image_ktp = 'user-'. time() . '.' . $request->fotoKtp->extension();
-            $request->gambar->move(public_path('uploads/users/ktp/'), $image_ktp);
+            $request->fotoKtp->move(public_path('uploads/users/ktp/'), $image_ktp);
             $updateData['fotoKtp'] = $image_ktp; 
         }
-        else if (isset($request->fotoRumah)) {
+        if (isset($request->fotoRumah)) {
             $file_rumah = public_path('uploads/users/rumah/' . $user->fotoRumah);
 
             if (file_exists($file_rumah) && is_file($file_rumah)) {
@@ -74,17 +75,19 @@ class PendaftarController extends Controller
             }
 
             $image_rumah = 'user-'. time() . '.' . $request->fotoRumah->extension();
-            $request->gambar->move(public_path('uploads/users/rumah/'), $image_rumah);
+            $request->fotoRumah->move(public_path('uploads/users/rumah/'), $image_rumah);
+            $updateData['fotoRumah'] = $image_rumah; 
         }
+
         $user->update($updateData);
 
         $pendaftar = Pendaftar::where('id_user', $id)->first();
 
         if (!$pendaftar) {
-            DB::table('pendaftar')->insert([
+            DB::table('pendaftars')->insert([
                 'id_user' => $user->id,
                 'jenisBantuan' => $updateData['jenisBantuan'],
-                'status' => 'menunggu'
+                'status' => 'belum diterima'
             ]);
         }
         return redirect()->back()->with('success', 'Berhasil ditambahkan!');
@@ -92,22 +95,21 @@ class PendaftarController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
-        if (!$user) {
-            return redirect()->back()->with('error', 'User tidak ditemukan.');
+        $pendaftar = Pendaftar::find($id);
+        if (!$pendaftar) {
+            return redirect()->back()->with('error', 'Pendaftar tidak ditemukan.');
         }
-        return view('admin.pages.pendaftar.edit', compact('user'));
+        return view('admin.pages.pendaftar.edit', compact('pendaftar'));
     }
 
     public function update(Request $request, $id)
     {
-        $pendaftar = Pendaftar::where('id_user', $id)->with('GetUser')->first();
+        $pendaftar = Pendaftar::find($id);
 
         if (!$pendaftar)
             return redirect()->back()->with('error', 'Pendaftar tidak ditemukan.');
 
         $data = $request->validate([
-            'jenisBantuan' => 'required',
             'status' => 'required',
         ]);
 
@@ -115,6 +117,15 @@ class PendaftarController extends Controller
         $pendaftar->update([
             'status' => $data['status']
         ]);
+
+        $penerima = Penerima::where('id_user', $pendaftar->id_user)->first();
+        if (!$penerima) {            
+            DB::table('penerimas')->insert([
+                'id_user' => $pendaftar->id_user,
+                'jenisBantuan' => $request->jenisBantuan,
+                'status' => $request->status
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Berhasil diedit!');
     }

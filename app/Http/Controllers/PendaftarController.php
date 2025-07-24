@@ -24,7 +24,7 @@ class PendaftarController extends Controller
 
         if (!$user)
             return redirect()->back()->with('error', 'User tidak ditemukan.');
-        
+
         $request->validate([
             'nik' => 'required',
             'nama' => 'required|string|max:255',
@@ -39,22 +39,22 @@ class PendaftarController extends Controller
         $updateData = [];
 
         if (isset($request->nik)) {
-            $updateData['nik'] = $request->nik;            
+            $updateData['nik'] = $request->nik;
         }
         if (isset($request->nama)) {
-            $updateData['nama'] = $request->nama;            
+            $updateData['nama'] = $request->nama;
         }
         if (isset($request->alamat)) {
-            $updateData['alamat'] = $request->alamat;            
+            $updateData['alamat'] = $request->alamat;
         }
         if (isset($request->jenisKelamin)) {
-            $updateData['jenisKelamin'] = $request->jenisKelamin;            
+            $updateData['jenisKelamin'] = $request->jenisKelamin;
         }
         if (isset($request->jenisBantuan)) {
-            $updateData['jenisBantuan'] = $request->jenisBantuan;            
+            $updateData['jenisBantuan'] = $request->jenisBantuan;
         }
         if (isset($request->nomorTelepon)) {
-            $updateData['nomorTelepon'] = $request->nomorTelepon;            
+            $updateData['nomorTelepon'] = $request->nomorTelepon;
         }
         if (isset($request->fotoKtp)) {
             $file_ktp = public_path('uploads/users/ktp/' . $user->fotoKtp);
@@ -63,9 +63,9 @@ class PendaftarController extends Controller
                 unlink($file_ktp);
             }
 
-            $image_ktp = 'user-'. time() . '.' . $request->fotoKtp->extension();
+            $image_ktp = 'user-' . time() . '.' . $request->fotoKtp->extension();
             $request->fotoKtp->move(public_path('uploads/users/ktp/'), $image_ktp);
-            $updateData['fotoKtp'] = $image_ktp; 
+            $updateData['fotoKtp'] = $image_ktp;
         }
         if (isset($request->fotoRumah)) {
             $file_rumah = public_path('uploads/users/rumah/' . $user->fotoRumah);
@@ -74,9 +74,9 @@ class PendaftarController extends Controller
                 unlink($file_rumah);
             }
 
-            $image_rumah = 'user-'. time() . '.' . $request->fotoRumah->extension();
+            $image_rumah = 'user-' . time() . '.' . $request->fotoRumah->extension();
             $request->fotoRumah->move(public_path('uploads/users/rumah/'), $image_rumah);
-            $updateData['fotoRumah'] = $image_rumah; 
+            $updateData['fotoRumah'] = $image_rumah;
         }
 
         $user->update($updateData);
@@ -119,7 +119,7 @@ class PendaftarController extends Controller
         ]);
 
         $penerima = Penerima::where('id_user', $pendaftar->id_user)->first();
-        if (!$penerima) {            
+        if (!$penerima) {
             DB::table('penerimas')->insert([
                 'id_user' => $pendaftar->id_user,
                 'jenisBantuan' => $request->jenisBantuan,
@@ -128,5 +128,36 @@ class PendaftarController extends Controller
         }
 
         return redirect()->back()->with('success', 'Berhasil diedit!');
+    }
+
+    public function destroy($id)
+    {
+        $pendaftar = Pendaftar::find($id);
+
+        if (!$pendaftar) {
+            return redirect()->back()->with('error', 'Pendaftar tidak ditemukan.');
+        }
+
+        // Hapus juga user jika perlu
+        $user = User::find($pendaftar->id_user);
+        if ($user) {
+            // Hapus foto KTP
+            if ($user->fotoKtp) {
+                $ktpPath = public_path('uploads/users/ktp/' . $user->fotoKtp);
+                if (file_exists($ktpPath)) unlink($ktpPath);
+            }
+
+            // Hapus foto Rumah
+            if ($user->fotoRumah) {
+                $rumahPath = public_path('uploads/users/rumah/' . $user->fotoRumah);
+                if (file_exists($rumahPath)) unlink($rumahPath);
+            }
+
+            $user->delete();
+        }
+
+        $pendaftar->delete();
+
+        return redirect()->back()->with('success', 'Data pendaftar berhasil dihapus.');
     }
 }

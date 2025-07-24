@@ -4,8 +4,8 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
             <a href="{{ route('admin.dashboard') }}" class="logo">
-                <img src="{{ asset('views/admin/assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand"
-                    class="navbar-brand" height="20" />
+                <img src="{{ asset('views/image/21dinsos.png') }}" alt="navbar brand"
+                    class="navbar-brand" height="70" width="170px"/>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">

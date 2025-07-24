@@ -8,7 +8,8 @@
                 <h4>Form Daftar</h4>
             </div>
             <div class="card-body">
-                <form id="formUser" action="{{ route('user.pendaftar.store', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                <form id="formUser" action="{{ route('user.pendaftar.store', Auth::user()->id) }}" method="POST"
+                    enctype="multipart/form-data">
 
                     @csrf
 
@@ -75,8 +76,8 @@
                         <label for="fotoKtp">Upload Foto KTP (jpg, jpeg, png)</label>
                         @if ($user->fotoKtp)
                             <div class="mb-2">
-                                <img src="{{ asset('uploads/users/ktp/' . $user->fotoKtp) }}" alt="Gambar Ktp" width="200"
-                                    class="rounded-3 shadow-sm">
+                                <img src="{{ asset('uploads/users/ktp/' . $user->fotoKtp) }}" alt="Gambar Ktp"
+                                    width="200" class="rounded-3 shadow-sm">
                             </div>
                         @endif
                         <input type="file" id="fotoKtp" name="fotoKtp" class="form-control bg-white text-dark"
@@ -87,8 +88,8 @@
                         <label for="fotoRumah">Upload Foto Rumah (jpg, jpeg, png)</label>
                         @if ($user->fotoRumah)
                             <div class="mb-2">
-                                <img src="{{ asset('uploads/users/rumah/' . $user->fotoRumah) }}" alt="Gambar Rumah" width="200"
-                                    class="rounded-3 shadow-sm">
+                                <img src="{{ asset('uploads/users/rumah/' . $user->fotoRumah) }}" alt="Gambar Rumah"
+                                    width="200" class="rounded-3 shadow-sm">
                             </div>
                         @endif
                         <input type="file" id="fotoRumah" name="fotoRumah" class="form-control bg-white text-dark"
@@ -96,17 +97,22 @@
                     </div>
 
 
-                    <div class="mt-4 d-flex gap-2">
-                        <button type="button" id="btnSimpan" class="btn btn-outline-primary fw-semibold shadow-sm px-4">
-                            <i class="fas fa-plus me-1"></i> Tambah
+                    <div class="mt-4 d-flex gap-3 flex-wrap">
+                        <!-- Tombol Tambah -->
+                        <button type="button" id="btnSimpan"
+                            class="btn btn-primary d-flex align-items-center gap-2 shadow-sm px-4 py-2 rounded-pill">
+                            <i class="fas fa-plus-circle fa-lg"></i>
+                            <span class="fw-semibold">Tambah</span>
                         </button>
 
-                        <a href="{{ route('home') }}" class="text-decoration-none">
-                            <button type="button" class="btn btn-outline-success fw-semibold shadow-sm px-4">
-                                <i class="fas fa-arrow-left me-1"></i> Kembali
-                            </button>
+                        <!-- Tombol Kembali -->
+                        <a href="{{ route('home') }}"
+                            class="btn btn-outline-secondary d-flex align-items-center gap-2 shadow-sm px-4 py-2 rounded-pill text-decoration-none">
+                            <i class="fas fa-arrow-left fa-lg"></i>
+                            <span class="fw-semibold">Kembali</span>
                         </a>
                     </div>
+
 
                 </form>
             </div>

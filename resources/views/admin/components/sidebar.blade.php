@@ -60,8 +60,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ Request::routeIs('admin.laporan') ? 'active' : '' }}">
-                    <a href="{{ route('admin.laporan') }}">
+                <li class="nav-item {{ Request::routeIs('admin.laporan.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.laporan.index') }}">
                         <i class="fas fa-file-alt"></i>
                         <p>Laporan</p>
                     </a>

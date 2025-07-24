@@ -19,6 +19,14 @@ class HomeController extends Controller
         return view('admin.pages.dashboard', compact('pendaftar', 'penerima', 'distribusi'));
     }
 
+    public function kepaladinas()
+    {
+        $pendaftar = Pendaftar::count();
+        $penerima = Penerima::count();
+        $distribusi = Distribusi::count();
+        return view('kepala-dinas.pages.dashboard', compact('pendaftar', 'penerima', 'distribusi'));
+    }
+
     public function penerimaBansos()
     {
         $distribusis = Distribusi::with('GetUser')->get();

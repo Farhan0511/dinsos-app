@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Laporan Data Pendaftar</h4>
 
-                    <form method="GET" action="{{ route('admin.laporan') }}" class="row g-2 mt-3">
+                    <form method="GET" action="{{ route('admin.laporan.data') }}" class="row g-2 mt-3">
                         <div class="col-auto">
                             <input type="date" name="start_date_pendaftar" class="form-control"
                                 value="{{ request('start_date_pendaftar') }}">
@@ -40,10 +40,10 @@
                                 @forelse ($pendaftars as $i => $p)
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
-                                        <td>{{ $p->nama }}</td>
-                                        <td>{{ $p->nik }}</td>
-                                        <td>{{ $p->alamat }}</td>
-                                        <td>{{ $p->tanggal_daftar }}</td>
+                                        <td>{{ $p->GetUser->nama }}</td>
+                                        <td>{{ $p->GetUser->nik }}</td>
+                                        <td>{{ $p->GetUser->alamat }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($p->updated_at)->translatedFormat('d F Y') }}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -61,7 +61,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Laporan Data Penerima</h4>
 
-                    <form method="GET" action="{{ route('admin.laporan') }}" class="row g-2 mt-3">
+                    <form method="GET" action="{{ route('admin.laporan.data') }}" class="row g-2 mt-3">
                         <div class="col-auto">
                             <input type="date" name="start_date_penerima" class="form-control"
                                 value="{{ request('start_date_penerima') }}">
@@ -87,10 +87,10 @@
                                 @forelse ($penerimas as $i => $p)
                                     <tr>
                                         <td>{{ $i + 1 }}</td>
-                                        <td>{{ $p->nama }}</td>
-                                        <td>{{ $p->nik }}</td>
-                                        <td>{{ $p->alamat }}</td>
-                                        <td>{{ $p->tanggal_terima }}</td>
+                                        <td>{{ $p->GetUser->nama }}</td>
+                                        <td>{{ $p->GetUser->nik }}</td>
+                                        <td>{{ $p->GetUser->alamat }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($p->updated_at)->translatedFormat('d F Y') }}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -102,7 +102,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Penerima;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class PendaftarController extends Controller
@@ -15,7 +16,11 @@ class PendaftarController extends Controller
     public function index()
     {
         $data = Pendaftar::with('GetUser')->get();
-        return view('admin.pages.pendaftar.index', compact('data'));
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            return view('admin.pages.pendaftar.index', compact('data'));
+        } else if (Auth::check() && Auth::user()->role == 'kepala dinas') {
+            return view('kepala-dinas.pages.pendaftar', compact('data'));        
+        }
     }
 
     public function store(Request $request, $id)

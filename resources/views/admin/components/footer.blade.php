@@ -6,7 +6,7 @@
         </div>
         <div>
             Distributed by
-            <a target="_blank" href="#">Dinas Sosial Kota Serang</a>.
+            <a target="#" href="#">Dinas Sosial Kota Serang</a>.
         </div>
     </div>
 </footer>

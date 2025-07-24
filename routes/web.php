@@ -31,46 +31,30 @@ Route::post('/register-proses', [LoginController::class, 'register_proses'])->na
 Route::get('/login', [LoginController::class, 'loginUser'])->name('loginUser');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 Route::get('/penerima-bansos', [HomeController::class, 'penerimaBansos'])->name('penerimaBansos');
 Route::get('/berita', [BeritaController::class, 'beritaUser'])->name('user.berita');
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function () {
+    Route::get('/kelola-profile', [UserController::class, 'editProfile'])->name('profile.edit');
+    Route::put('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::get('/daftar', [HomeController::class, 'daftar'])->name('daftar');
     Route::post('/daftar/{id}', [PendaftarController::class, 'store'])->name('pendaftar.store');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function () {
     Route::get('/dashboard', [HomeController::class, 'admin'])->name('dashboard');
-
     Route::resource('berita', BeritaController::class);
     Route::resource('pendaftar', PendaftarController::class);
     Route::resource('penerima', PenerimaController::class);
     Route::resource('distribusi', DistribusiController::class);
-    Route::delete('/admin/pendaftar/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
-
-
-    // Laporan
-    Route::get('/laporan', [LaporanController::class, 'index'])->name('index');
-    Route::get('/laporan', [LaporanController::class, 'laporan'])->name('laporan');
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/data', [LaporanController::class, 'laporan'])->name('laporan.data');
 });
 
-// Kepala Dinas
-// Dashboard Kepala Dinas
-Route::get('/kepala-dinas/dashboard', [KepalaDinasController::class, 'kepalaDinas'])->name('kepala-dinas.dashboard');
-// Data Penerima Bantuan
-Route::get('/kepala-dinas/penerima', [KepalaDinasController::class, 'kepalaDinasPenerimaView'])->name('kepala-dinas.penerima');
-// Data Pendaftar (Monitoring)
-Route::get('/kepala-dinas/pendaftar', [KepalaDinasController::class, 'kepalaPendaftar'])->name('kepala-dinas.pendaftar');
-// Laporan
-Route::get('/kepala-dinas/laporan', [KepalaDinasController::class, 'kepalaDinasLaporan'])->name('kepala-dinas.laporan');
-
-Route::get('/kepala-dinas/penerima', [KepalaDinasController::class, 'kepalaDinasPenerima'])->name('kepala-dinas.penerima');
-
-
-
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/kelola-profile', [UserController::class, 'editProfile'])->name('user.profile.edit');
-    Route::put('/profile', [UserController::class, 'updateProfile'])->name('user.profile.update');
+Route::group(['prefix' => 'kepala-dinas', 'middleware' => ['auth', 'kepala-dinas'], 'as' => 'kepala-dinas.'], function () {
+    Route::get('/dashboard', [HomeController::class, 'kepaladinas'])->name('dashboard');
+    Route::resource('pendaftar', PendaftarController::class);
+    Route::resource('penerima', PenerimaController::class);
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/data', [LaporanController::class, 'laporan'])->name('laporan.data');
 });

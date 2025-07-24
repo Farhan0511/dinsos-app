@@ -47,6 +47,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     Route::resource('pendaftar', PendaftarController::class);
     Route::resource('penerima', PenerimaController::class);
     Route::resource('distribusi', DistribusiController::class);
+    Route::delete('/admin/pendaftar/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
+
 
     // Laporan
     Route::get('/laporan', [LaporanController::class, 'index'])->name('index');

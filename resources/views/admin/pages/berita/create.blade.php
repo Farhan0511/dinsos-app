@@ -3,7 +3,7 @@
 @section('title', 'Daftar Berita')
 @section('content')
     <div class="container py-4">
-        <h3 class="mb-4 fw-semibold text-center mt-5">Input Berita Dinsos</h3>
+        <h3 class="mb-4 fw-semibold text-center mt-5">Input Berita Program Dinsos</h3>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>

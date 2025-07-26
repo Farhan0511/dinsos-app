@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('nomorTelepon')->nullable();
             $table->string('fotoKtp')->nullable();
             $table->string('fotoRumah')->nullable();
+            $table->string('fotoDiri')->nullable();
             $table->enum('jenisBantuan', ['Kursi Roda', 'Kaki Palsu', 'Tangan Palsu'])->nullable();
             $table->enum('role', ['admin', 'kepala dinas', 'user'])->default('user');
             $table->rememberToken();

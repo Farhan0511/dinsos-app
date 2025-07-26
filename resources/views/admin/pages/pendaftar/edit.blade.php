@@ -107,6 +107,16 @@
                     </div>
 
                     <div class="form-group mb-3">
+                        <label for="fotoDiri">Foto Diri</label>
+                        @if ($pendaftar->GetUser->fotoDiri)
+                            <div class="mb-2">
+                                <img src="{{ asset('uploads/users/fotodiri/' . $pendaftar->GetUser->fotoDiri) }}" alt="Gambar Diri" width="200"
+                                    class="rounded-3 shadow-sm">
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="form-group mb-3">
                         <label for="status">Status</label>
                         <select id="status" name="status" class="form-control">
                             <option value="belum diterima" {{ $pendaftar->status == 'belum diterima' ? 'selected' : '' }}>Belum Diterima</option>

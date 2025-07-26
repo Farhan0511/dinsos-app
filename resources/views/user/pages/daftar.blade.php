@@ -96,6 +96,17 @@
                             accept=".jpg,.jpeg,.png">
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="fotoKtp">Upload Foto Diri (jpg, jpeg, png)</label>
+                        @if ($user->fotoDiri)
+                            <div class="mb-2">
+                                <img src="{{ asset('uploads/users/fotodiri/' . $user->fotoDiri) }}" alt="Foto Diri"
+                                    width="200" class="rounded-3 shadow-sm">
+                            </div>
+                        @endif
+                        <input type="file" id="fotoDiri" name="fotoDiri" class="form-control bg-white text-dark"
+                            accept=".jpg,.jpeg,.png">
+                    </div>
 
                     <div class="mt-4 d-flex gap-3 flex-wrap">
                         <!-- Tombol Tambah -->

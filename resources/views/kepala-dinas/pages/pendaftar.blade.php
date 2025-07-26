@@ -36,6 +36,7 @@
                                             <th>No Telepon</th>
                                             <th>Foto KTP</th>
                                             <th>Foto Rumah</th>
+                                            <th>Foto Diri</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -62,6 +63,15 @@
                                                         <img src="{{ asset('uploads/users/rumah/' . $d->GetUser->fotoRumah) }}"
                                                             alt="Foto Rumah" width="100" class="zoomable-img"
                                                             data-img="{{ asset('uploads/users/rumah/' . $d->GetUser->fotoRumah) }}">
+                                                    @else
+                                                        <span class="text-muted">Belum Upload</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($d->GetUser->fotoDiri)
+                                                        <img src="{{ asset('uploads/users/fotodiri/' . $d->GetUser->fotoDiri) }}"
+                                                            alt="Foto Diri" width="100" class="zoomable-img"
+                                                            data-img="{{ asset('uploads/users/fotodiri/' . $d->GetUser->fotoDiri) }}">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif

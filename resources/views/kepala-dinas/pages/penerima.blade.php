@@ -30,6 +30,7 @@
                                             <th>No Telepon</th>
                                             <th>Foto KTP</th>
                                             <th>Foto Rumah</th>
+                                            <th>Foto Diri</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -45,8 +46,8 @@
                                                 <td>{{ $p->GetUser->nomorTelepon }}</td>
                                                 <td>
                                                     @if ($p->GetUser->fotoKtp)
-                                                        <img src="{{ asset('uploads/users/ktp/' . $p->GetUser->fotoKtp) }}" alt="Foto KTP"
-                                                            width="100">
+                                                        <img src="{{ asset('uploads/users/ktp/' . $p->GetUser->fotoKtp) }}"
+                                                            data-img="{{ asset('uploads/users/ktp/' . $p->GetUser->fotoKtp) }}"  alt="Foto KTP" width="100">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
@@ -54,7 +55,15 @@
                                                 <td>
                                                     @if ($p->GetUser->fotoRumah)
                                                         <img src="{{ asset('uploads/users/rumah/' . $p->GetUser->fotoRumah) }}" alt="Foto Rumah"
-                                                            width="100">
+                                                            data-img="{{ asset('uploads/users/rumah/' . $p->GetUser->fotoRumah) }}" width="100">
+                                                    @else
+                                                        <span class="text-muted">Belum Upload</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($p->GetUser->fotoDiri)
+                                                        <img src="{{ asset('uploads/users/fotodiri/' . $p->GetUser->fotoDiri) }}" alt="Foto Diri"
+                                                            data-img="{{ asset('uploads/users/fotodiri/' . $p->GetUser->fotoDiri) }}" width="100">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
@@ -75,4 +84,25 @@
             </div>
         </div>
     </div>
+    {{-- Load SweetAlert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Zoom Gambar dengan SweetAlert2 --}}
+    <script>
+        document.querySelectorAll('.zoomable-img').forEach(img => {
+            img.addEventListener('click', function() {
+                const imageUrl = this.getAttribute('data-img');
+
+                Swal.fire({
+                    imageUrl: imageUrl,
+                    imageAlt: 'Foto Pendaftar',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    width: 'auto',
+                    padding: '1em',
+                    background: '#fff',
+                });
+            });
+        });
+    </script>
 @endsection

@@ -39,6 +39,7 @@ class PendaftarController extends Controller
             'nomorTelepon' => 'required',
             'fotoKtp' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'fotoRumah' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'fotoDiri' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $updateData = [];
@@ -82,6 +83,17 @@ class PendaftarController extends Controller
             $image_rumah = 'user-' . time() . '.' . $request->fotoRumah->extension();
             $request->fotoRumah->move(public_path('uploads/users/rumah/'), $image_rumah);
             $updateData['fotoRumah'] = $image_rumah;
+        }
+        if (isset($request->fotoDiri)) {
+            $file_diri = public_path('uploads/users/fotodiri/' . $user->fotoDiri);
+
+            if (file_exists($file_diri) && is_file($file_diri)) {
+                unlink($file_diri);
+            }
+
+            $image_diri = 'user-' . time() . '.' . $request->fotoDiri->extension();
+            $request->fotoDiri->move(public_path('uploads/users/fotodiri/'), $image_diri);
+            $updateData['fotoDiri'] = $image_diri;
         }
 
         $user->update($updateData);
@@ -156,6 +168,14 @@ class PendaftarController extends Controller
             if ($user->fotoRumah) {
                 $rumahPath = public_path('uploads/users/rumah/' . $user->fotoRumah);
                 if (file_exists($rumahPath)) unlink($rumahPath);
+            }
+
+            if (isset($user->fotoDiri)) {
+                $file_diri = public_path('uploads/users/fotodiri/' . $user->fotoDiri);
+
+                if (file_exists($file_diri) && is_file($file_diri)) {
+                    unlink($file_diri);
+                }
             }
 
             $user->delete();

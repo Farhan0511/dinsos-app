@@ -6,6 +6,7 @@ use App\Models\Penerima;
 use App\Models\Pendaftar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
@@ -50,4 +51,33 @@ class LaporanController extends Controller
             ]);            
         }
     }
+
+    public function downloadPendaftarPdf(Request $request)
+    {
+        $pendaftars = Pendaftar::with('GetUser')
+            ->when($request->start_date_pendaftar, fn($q) =>
+                $q->whereDate('updated_at', '>=', $request->start_date_pendaftar)
+            )
+            ->get();
+
+        $pdf = Pdf::loadView('pdf.pendaftar', compact('pendaftars'))
+                ->setPaper('A4', 'portrait');
+
+        return $pdf->download('laporan_pendaftar.pdf');
+    }
+
+    public function downloadPenerimaPdf(Request $request)
+    {
+        $penerimas = Penerima::with('GetUser')
+            ->when($request->start_date_penerima, fn($q) =>
+                $q->whereDate('updated_at', '>=', $request->start_date_penerima)
+            )
+            ->get();
+
+        $pdf = Pdf::loadView('pdf.penerima', compact('penerimas'))
+                ->setPaper('A4', 'portrait');
+
+        return $pdf->download('laporan_penerima.pdf');
+    }
+
 }

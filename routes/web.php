@@ -58,3 +58,6 @@ Route::group(['prefix' => 'kepala-dinas', 'middleware' => ['auth', 'kepala-dinas
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/data', [LaporanController::class, 'laporan'])->name('laporan.data');
 });
+
+Route::get('/laporan/pendaftar/pdf', [LaporanController::class, 'downloadPendaftarPdf'])->name('laporan.pendaftar.pdf');
+Route::get('/laporan/penerima/pdf', [LaporanController::class, 'downloadPenerimaPdf'])->name('laporan.penerima.pdf');

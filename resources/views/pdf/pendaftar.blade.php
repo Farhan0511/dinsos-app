@@ -3,14 +3,60 @@
 <head>
     <title>Laporan Data Pendaftar</title>
     <style>
-        body { font-family: sans-serif; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #000; padding: 6px; font-size: 12px; text-align: left; }
-        th { background-color: #eee; }
+        body { font-family: sans-serif; margin: 20px; }
+        .header {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .header img {
+            width: 120px;
+            height: 80px;
+            margin-right: 20px;
+        }
+        .header .text-header {
+            text-align: left;
+        }
+        .header .text-header h2, .header .text-header p {
+            margin: 0;
+            line-height: 1.4;
+        }
+        h3 {
+            text-align: center;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px;
+            font-size: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
     </style>
 </head>
 <body>
+    <!-- HEADER DINAS -->
+    <div class="header">
+        <img src="{{ public_path('views/image/21dinsos.png') }}" class="w-100" alt="Logo Dinas Sosial">
+        <div class="text-header">
+            <h2>DINAS SOSIAL</h2>
+            <p>PEMERINTAH KOTA SERANG</p>
+        </div>
+    </div>
+
+    <!-- JUDUL -->
     <h3>Laporan Data Pendaftar</h3>
+
+    <!-- TABEL -->
     <table>
         <thead>
             <tr>

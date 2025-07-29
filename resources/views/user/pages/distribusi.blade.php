@@ -5,7 +5,7 @@
     <div class="container mt-4">
         <div class="page-inner">
             <div class="page-header">
-                <h3 class="fw-bold mb-3">Data Penerima Bantuan</h3>
+                <h3 class="fw-bold mb-3">Data Distribusi Bantuan</h3>
             </div>
             <div class="w-100">
                 <div class="col-12">
@@ -19,20 +19,23 @@
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>Jenis Bantuan</th>
-                                            <th>Status</th>
+                                            <th>Foto Penyerahan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($penerimas as $p)
+                                        @foreach ($distribusis as $p)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $p->GetUser->nama }}</td>
                                                 <td>{{ $p->GetUser->alamat }}</td>
                                                 <td>{{ $p->GetUser->jenisBantuan }}</td>
                                                 <td>
-                                                    <span class="text-success">
-                                                        <i class="fas fa-check-circle"></i> Diterima
-                                                    </span>
+                                                    @if ($p->foto_penyerahan)
+                                                        <img src="{{ asset('uploads/distribusi/images/' . $p->foto_penyerahan) }}" alt="Foto Penyerahan"
+                                                            width="100">
+                                                    @else
+                                                        <span class="text-muted">Tidak Ada</span>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

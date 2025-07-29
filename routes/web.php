@@ -32,6 +32,7 @@ Route::get('/login', [LoginController::class, 'loginUser'])->name('loginUser');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/penerima-bansos', [HomeController::class, 'penerimaBansos'])->name('penerimaBansos');
+Route::get('/distribusi-bansos', [HomeController::class, 'distribusiBansos'])->name('distribusiBansos');
 Route::get('/berita', [BeritaController::class, 'beritaUser'])->name('user.berita');
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'as' => 'user.'], function () {

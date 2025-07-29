@@ -24,6 +24,9 @@
                     <a class="nav-link fw-semibold" href="{{ route('penerimaBansos') }}">Penerima</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="{{ route('distribusiBansos') }}">Distribusi</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link fw-semibold" href="{{ route('user.berita') }}">Berita Terbaru</a>
                 </li>
             </ul>

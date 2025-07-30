@@ -15,20 +15,26 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item">
-                    <a class="nav-link active fw-semibold" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link fw-semibold {{ request()->routeIs('home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="{{ route('user.daftar') }}">Daftar</a>
+                    <a class="nav-link fw-semibold {{ request()->routeIs('user.daftar') ? 'active' : '' }}"
+                        href="{{ route('user.daftar') }}">Daftar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="{{ route('penerimaBansos') }}">Penerima</a>
+                    <a class="nav-link fw-semibold {{ request()->routeIs('penerimaBansos') ? 'active' : '' }}"
+                        href="{{ route('penerimaBansos') }}">Penerima</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="{{ route('distribusiBansos') }}">Distribusi</a>
+                    <a class="nav-link fw-semibold {{ request()->routeIs('distribusiBansos') ? 'active' : '' }}"
+                        href="{{ route('distribusiBansos') }}">Distribusi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="{{ route('user.berita') }}">Berita Terbaru</a>
+                    <a class="nav-link fw-semibold {{ request()->routeIs('user.berita') ? 'active' : '' }}"
+                        href="{{ route('user.berita') }}">Berita Terbaru</a>
                 </li>
+
             </ul>
 
             <!-- Right side: Login or Greeting -->

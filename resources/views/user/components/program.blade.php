@@ -25,10 +25,10 @@
                 'Program pelatihan dan pengembangan keterampilan untuk meningkatkan kemandirian penyandang disabilitas.',
         ],
         [
-            'title' => 'Verifikasi dan Penyaluran Bantuan',
+            'title' => 'Dukungan Aksesibel untuk Penyandang Disabilitas',
             'image' => 'disabilitas 5.jpeg',
             'desc' =>
-                'Sistem pendataan dan verifikasi calon penerima manfaat serta pelacakan distribusi bantuan yang transparan.',
+                'Meningkatkan inklusi sosial dengan sistem pendataan dan distribusi bantuan yang ramah disabilitas dan mudah diakses.',
         ],
         [
             'title' => 'Hari Disabilitas Internasional',

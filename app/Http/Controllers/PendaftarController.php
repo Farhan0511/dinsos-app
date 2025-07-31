@@ -140,8 +140,13 @@ class PendaftarController extends Controller
             DB::table('penerimas')->insert([
                 'id_user' => $pendaftar->id_user,
                 'jenisBantuan' => $request->jenisBantuan,
-                'status' => $request->status
+                'status' => $request->status,
+                'tanggal_pengambilan' => $request->tanggal_pengambilan
             ]);
+        } else {
+            $penerima->update([
+                'tanggal_pengambilan' => $request->tanggal_pengambilan
+            ]);            
         }
 
         return redirect()->back()->with('success', 'Berhasil diedit!');

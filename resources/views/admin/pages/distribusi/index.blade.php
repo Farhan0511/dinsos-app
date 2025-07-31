@@ -38,7 +38,8 @@
                                             <th>Jenis Bantuan</th>
                                             <th>No Telepon</th>
                                             <th>Foto Penyerahan</th>
-                                            <th>Action</th>
+                                            <th>Tanggal</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,6 +59,9 @@
                                                     @else
                                                         <span class="text-muted">Tidak Ada</span>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($distribusi->created_at)->format('d/m/Y') }}
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('admin.distribusi.edit', $distribusi->id) }}"

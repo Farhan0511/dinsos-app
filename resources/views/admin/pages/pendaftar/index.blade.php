@@ -38,7 +38,8 @@
                                             <th>Foto Rumah</th>
                                             <th>Foto Diri</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Tanggal</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,6 +88,9 @@
                                                             <i class="fas fa-times-circle"></i> Belum Diterima
                                                         </span>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($d->created_at)->format('d/m/Y') }}
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('admin.pendaftar.edit', $d->id) }}"

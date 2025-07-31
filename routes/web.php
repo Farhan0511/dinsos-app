@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DistribusiController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\KepalaDinasController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PendaftarController;
@@ -50,6 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     Route::resource('distribusi', DistribusiController::class);
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/data', [LaporanController::class, 'laporan'])->name('laporan.data');
+    Route::post('/penerima/send', [EmailController::class, 'mail'])->name('send.email');
 });
 
 Route::group(['prefix' => 'kepala-dinas', 'middleware' => ['auth', 'kepala-dinas'], 'as' => 'kepala-dinas.'], function () {

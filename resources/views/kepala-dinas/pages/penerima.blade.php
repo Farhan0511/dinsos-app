@@ -31,6 +31,7 @@
                                             <th>Foto KTP</th>
                                             <th>Foto Rumah</th>
                                             <th>Foto Diri</th>
+                                            <th>Tanggal</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -67,6 +68,9 @@
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($p->created_at)->format('d/m/Y') }}
                                                 </td>
                                                 <td>
                                                     <span class="text-success">

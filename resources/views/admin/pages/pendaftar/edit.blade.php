@@ -124,6 +124,11 @@
                         </select>
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="tanggal_pengambilan">Tanggal Pengambilan</label>
+                        <input type="date" id="tanggal_pengambilan" name="tanggal_pengambilan" class="form-control" required>
+                    </div>
+
                     <button type="submit" id="btnSimpan" class="btn btn-primary mt-4">Edit</button>
                     <a href="{{ route('admin.pendaftar.index') }}">
                         <button type="button" class="btn btn-success mt-4">Kembali</button>

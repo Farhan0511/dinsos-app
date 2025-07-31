@@ -31,7 +31,9 @@
                                             <th>Foto KTP</th>
                                             <th>Foto Rumah</th>
                                             <th>Foto Diri</th>
+                                            <th>Tanggal Pengambilan</th>
                                             <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,9 +74,25 @@
                                                     @endif
                                                 </td>
                                                 <td>
+                                                    {{ \Carbon\Carbon::parse($p->tanggal_pengambilan)->format('d/m/Y') }}
+                                                </td>
+                                                <td>
                                                     <span class="text-success">
                                                         <i class="fas fa-check-circle"></i> Diterima
                                                     </span>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('admin.send.email') }}" method="POST" style="margin-top: 5px;">
+                                                        @csrf
+                                                        <input type="hidden" name="nama" value="{{ $p->GetUser->nama }}">
+                                                        <input type="hidden" name="email" value="{{ $p->GetUser->email }}">
+                                                        <input type="hidden" name="jenis_bantuan" value="{{ $p->GetUser->jenisBantuan }}">
+                                                        <input type="hidden" name="tanggal_pengambilan" value="{{ $p->tanggal_pengambilan }}">
+
+                                                        <button type="submit" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-envelope"></i> Kirim Email
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -108,4 +126,30 @@
             });
         });
     </script>
+
+    {{-- SweetAlert Notifikasi Sukses --}}
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: '{{ session('success') }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
+
+    {{-- SweetAlert Notifikasi Error --}}
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ session('error') }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
 @endsection

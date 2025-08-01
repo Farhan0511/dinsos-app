@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Brand -->
         <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
-            <span class="fw-bold text-dark" style="font-size: 1.4rem;">Dinsos Kota Serang</span>
+            <span class="fw-bold text-dark" style="font-size: 1.4rem;">Dinas Sosial Kota Serang</span>
         </a>
 
         <!-- Toggle -->

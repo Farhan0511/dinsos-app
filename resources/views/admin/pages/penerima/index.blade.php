@@ -15,9 +15,7 @@
                             <div class="card-title">Data Penerima</div>
                         </div>
                         <div class="card-body">
-                            {{-- <input type="text" placeholder="Search ..." class="form-control mb-3" /> --}}
                             <div class="table-responsive">
-
                                 <table class="table table-striped table-hover mb-0">
                                     <thead>
                                         <tr>
@@ -49,26 +47,26 @@
                                                 <td>
                                                     @if ($p->GetUser->fotoKtp)
                                                         <img src="{{ asset('uploads/users/ktp/' . $p->GetUser->fotoKtp) }}"
-                                                            data-img="{{ asset('uploads/users/ktp/' . $p->GetUser->fotoKtp) }}" 
-                                                            alt="Foto KTP" width="100">
+                                                            data-img="{{ asset('uploads/users/ktp/' . $p->GetUser->fotoKtp) }}"
+                                                            alt="Foto KTP" width="100" class="zoomable-img">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     @if ($p->GetUser->fotoRumah)
-                                                        <img src="{{ asset('uploads/users/rumah/' . $p->GetUser->fotoRumah) }}" 
-                                                            data-img="{{ asset('uploads/users/rumah/' . $p->GetUser->fotoRumah) }}"                                                        
-                                                            alt="Foto Rumah" width="100">
+                                                        <img src="{{ asset('uploads/users/rumah/' . $p->GetUser->fotoRumah) }}"
+                                                            data-img="{{ asset('uploads/users/rumah/' . $p->GetUser->fotoRumah) }}"
+                                                            alt="Foto Rumah" width="100" class="zoomable-img">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     @if ($p->GetUser->fotoDiri)
-                                                        <img src="{{ asset('uploads/users/fotodiri/' . $p->GetUser->fotoDiri) }}" 
-                                                            data-img="{{ asset('uploads/users/fotodiri/' . $p->GetUser->fotoDiri) }}" 
-                                                            alt="Foto Diri" width="100">
+                                                        <img src="{{ asset('uploads/users/fotodiri/' . $p->GetUser->fotoDiri) }}"
+                                                            data-img="{{ asset('uploads/users/fotodiri/' . $p->GetUser->fotoDiri) }}"
+                                                            alt="Foto Diri" width="100" class="zoomable-img">
                                                     @else
                                                         <span class="text-muted">Belum Upload</span>
                                                     @endif
@@ -82,12 +80,17 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('admin.send.email') }}" method="POST" style="margin-top: 5px;">
+                                                    <form action="{{ route('admin.send.email') }}" method="POST"
+                                                        style="margin-top: 5px;">
                                                         @csrf
-                                                        <input type="hidden" name="nama" value="{{ $p->GetUser->nama }}">
-                                                        <input type="hidden" name="email" value="{{ $p->GetUser->email }}">
-                                                        <input type="hidden" name="jenis_bantuan" value="{{ $p->GetUser->jenisBantuan }}">
-                                                        <input type="hidden" name="tanggal_pengambilan" value="{{ $p->tanggal_pengambilan }}">
+                                                        <input type="hidden" name="nama"
+                                                            value="{{ $p->GetUser->nama }}">
+                                                        <input type="hidden" name="email"
+                                                            value="{{ $p->GetUser->email }}">
+                                                        <input type="hidden" name="jenis_bantuan"
+                                                            value="{{ $p->GetUser->jenisBantuan }}">
+                                                        <input type="hidden" name="tanggal_pengambilan"
+                                                            value="{{ $p->tanggal_pengambilan }}">
 
                                                         <button type="submit" class="btn btn-sm btn-primary">
                                                             <i class="fas fa-envelope"></i> Kirim Email
@@ -98,13 +101,14 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>
+                            </div> <!-- /.table-responsive -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     {{-- Load SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -116,7 +120,7 @@
 
                 Swal.fire({
                     imageUrl: imageUrl,
-                    imageAlt: 'Foto Pendaftar',
+                    imageAlt: 'Foto Penerima',
                     showConfirmButton: false,
                     showCloseButton: true,
                     width: 'auto',

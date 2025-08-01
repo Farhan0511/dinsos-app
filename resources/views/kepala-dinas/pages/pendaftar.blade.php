@@ -78,7 +78,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{ \Carbon\Carbon::parse($p->created_at)->format('d/m/Y') }}
+                                                    {{ \Carbon\Carbon::parse($d->created_at)->format('d/m/Y') }}
                                                 </td>
                                                 <td>
                                                     @if ($d->status == 'diterima')

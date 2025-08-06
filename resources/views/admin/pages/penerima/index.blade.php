@@ -80,7 +80,7 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('admin.send.email') }}" method="POST"
+                                                    <form action="{{ route('admin.send.email.penerima') }}" method="POST"
                                                         style="margin-top: 5px;">
                                                         @csrf
                                                         <input type="hidden" name="nama"
@@ -91,6 +91,8 @@
                                                             value="{{ $p->GetUser->jenisBantuan }}">
                                                         <input type="hidden" name="tanggal_pengambilan"
                                                             value="{{ $p->tanggal_pengambilan }}">
+                                                        <input type="hidden" name="status"
+                                                            value="{{ $p->status }}">
 
                                                         <button type="submit" class="btn btn-sm btn-primary">
                                                             <i class="fas fa-envelope"></i> Kirim Email

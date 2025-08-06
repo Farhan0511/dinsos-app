@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('fotoDiri')->nullable();
             $table->enum('jenisBantuan', ['Kursi Roda', 'Kaki Palsu', 'Tangan Palsu'])->nullable();
             $table->enum('role', ['admin', 'kepala dinas', 'user'])->default('user');
+            $table->string('otp')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
+            $table->boolean('is_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

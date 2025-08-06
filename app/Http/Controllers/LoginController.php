@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -33,6 +35,9 @@ class LoginController extends Controller
 
             // Do redirect panel base on role
             if (Auth::user()->role == 'user') {
+                if (!Auth::user()->is_verified) {
+                    return redirect()->route('user.otp.verification');
+                }
                 return redirect()->route('home')->with('success', 'Login berhasil!');                                
             } else if (Auth::user()->role == 'admin') {
                 return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');                
@@ -72,16 +77,38 @@ class LoginController extends Controller
 
         User::create($data);
 
-        $login = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        $otp = rand(100000, 999999);
+        DB::table('users')->where('email', $request->email)->update([
+            'otp' => $otp,
+            'otp_expires_at' => Carbon::now()->addMinutes(30)
+        ]);
 
-        if (Auth::attempt($login)) {
-            $request->session()->regenerate();
-            return redirect()->route('loginUser')->with('success', 'Regist berhasil!');
+        Mail::to($request->email)->send(new \App\Mail\OtpVerification($request->nama, $request->email, $otp));
+
+        return redirect()->route('loginUser')->with('success', 'Regist berhasil!');
+    }
+
+    public function otp_verification() 
+    {
+        return view('auth.pages.otp');
+    }
+
+    public function otp_proses(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|numeric',
+        ]);
+
+        $user = auth()->user();
+
+        if ($user->otp === $request->otp && Carbon::parse($user->otp_expires_at)->isFuture()) {
+            $user->is_verified = true;
+            $user->otp = null;
+            $user->otp_expires_at = null;
+            $user->save();
+
+            return redirect()->route('home')->with('success', 'Verifikasi berhasil!');
         }
-
-        return redirect()->route('register')->with('failed', 'Email atau password salah.');
+        return back()->with('failed', 'Kode OTP salah atau sudah kadaluarsa.');
     }
 }

@@ -67,7 +67,29 @@
 
     {{-- Sweet Alert --}}
     <script src="{{ asset('views/user/js/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- SweetAlert Login Failed -->
+    @if (session('failed'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Verifikasi Gagal!',
+                text: '{{ session('failed') }}',
+            });
+        </script>
+    @endif
+
+    <!-- SweetAlert Success Message -->
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
 </body>
 
 </html>

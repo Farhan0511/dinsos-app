@@ -22,7 +22,7 @@ class SendEmail extends Mailable
 
     public function build()
     {
-        return $this->subject('Penerimaan Bantuan Sosial - ' . $this->data['jenis_bantuan'])
+        return $this->subject('Status Penerimaan Bantuan Sosial - ' . $this->data['jenis_bantuan'])
                     ->markdown('emails.notification')
                     ->with('data', $this->data);
     }

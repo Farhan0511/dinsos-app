@@ -39,6 +39,7 @@
                                             <th>Foto Diri</th>
                                             <th>Status</th>
                                             <th>Tanggal</th>
+                                            <th>Email</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -91,6 +92,26 @@
                                                 </td>
                                                 <td>
                                                     {{ \Carbon\Carbon::parse($d->created_at)->format('d/m/Y') }}
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('admin.send.email.pendaftar') }}" method="POST"
+                                                        style="margin-top: 5px;">
+                                                        @csrf
+                                                        <input type="hidden" name="id_user"
+                                                            value="{{ $d->GetUser->id }}">
+                                                        <input type="hidden" name="nama"
+                                                            value="{{ $d->GetUser->nama }}">
+                                                        <input type="hidden" name="email"
+                                                            value="{{ $d->GetUser->email }}">
+                                                        <input type="hidden" name="jenis_bantuan"
+                                                            value="{{ $d->GetUser->jenisBantuan }}">
+                                                        <input type="hidden" name="status"
+                                                            value="{{ $d->status }}">
+
+                                                        <button type="submit" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-envelope"></i> Kirim
+                                                        </button>
+                                                    </form>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('admin.pendaftar.edit', $d->id) }}"

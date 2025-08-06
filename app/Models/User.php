@@ -29,7 +29,10 @@ class User extends Authenticatable
         'role',
         'fotoKtp',
         'fotoRumah',
-        'fotoDiri'
+        'fotoDiri',
+        'otp',
+        'otp_expires_at',
+        'is_verified'
     ];
 
     /**

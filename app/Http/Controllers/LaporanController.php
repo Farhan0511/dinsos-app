@@ -63,11 +63,11 @@ class LaporanController extends Controller
         if ($request->filled('start_date_penerima') && $request->filled('end_date_penerima')) {
             $start = Carbon::parse($request->start_date_penerima)->startOfDay();
             $end = Carbon::parse($request->end_date_penerima)->endOfDay();
-            $penerimas->whereBetween('updated_at', [$start, $end]);
+            $penerimas->whereBetween('tanggal_pengambilan', [$start, $end]);
         } elseif ($request->filled('start_date_penerima')) {
             $start = Carbon::parse($request->start_date_penerima)->startOfDay();
             $end = Carbon::parse($request->start_date_penerima)->endOfDay();
-            $penerimas->whereBetween('updated_at', [$start, $end]);
+            $penerimas->whereBetween('tanggal_pengambilan', [$start, $end]);
         }
 
         if (Auth::check() && Auth::user()->role == 'admin') {
@@ -110,12 +110,12 @@ class LaporanController extends Controller
             ->when($request->filled('start_date_penerima') && $request->filled('end_date_penerima'), function ($query) use ($request) {
                 $start = Carbon::parse($request->start_date_penerima)->startOfDay();
                 $end = Carbon::parse($request->end_date_penerima)->endOfDay();
-                $query->whereBetween('updated_at', [$start, $end]);
+                $query->whereBetween('tanggal_pengambilan', [$start, $end]);
             })
             ->when($request->filled('start_date_penerima') && !$request->filled('end_date_penerima'), function ($query) use ($request) {
                 $start = Carbon::parse($request->start_date_penerima)->startOfDay();
                 $end = Carbon::parse($request->start_date_penerima)->endOfDay();
-                $query->whereBetween('updated_at', [$start, $end]);
+                $query->whereBetween('tanggal_pengambilan', [$start, $end]);
             })
             ->get();
 

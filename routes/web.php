@@ -53,7 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     Route::resource('penerima', PenerimaController::class);
     Route::resource('distribusi', DistribusiController::class);
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-    Route::get('/laporan/data', [LaporanController::class, 'laporan'])->name('laporan.data');
+    Route::get('/laporan/data/pendaftar', [LaporanController::class, 'laporanPendaftar'])->name('laporan-pendaftar.data');
+    Route::get('/laporan/data/penerima', [LaporanController::class, 'laporanPenerima'])->name('laporan-penerima.data');
     Route::post('/penerima/send', [EmailController::class, 'mailPenerima'])->name('send.email.penerima');
     Route::post('/pendaftar/send', [EmailController::class, 'mailPendaftar'])->name('send.email.pendaftar');
 });
@@ -63,7 +64,8 @@ Route::group(['prefix' => 'kepala-dinas', 'middleware' => ['auth', 'kepala-dinas
     Route::resource('pendaftar', PendaftarController::class);
     Route::resource('penerima', PenerimaController::class);
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-    Route::get('/laporan/data', [LaporanController::class, 'laporan'])->name('laporan.data');
+    Route::get('/laporan/data/pendaftar', [LaporanController::class, 'laporanPendaftar'])->name('laporan-pendaftar.data');
+    Route::get('/laporan/data/penerima', [LaporanController::class, 'laporanPenerima'])->name('laporan-penerima.data');
 });
 
 Route::get('/laporan/pendaftar/pdf', [LaporanController::class, 'downloadPendaftarPdf'])->name('laporan.pendaftar.pdf');

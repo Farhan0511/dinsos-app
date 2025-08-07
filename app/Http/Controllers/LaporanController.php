@@ -26,14 +26,30 @@ class LaporanController extends Controller
         }
     }
 
-    public function laporan(Request $request)
+    public function laporanPendaftar(Request $request)
     {
         $pendaftars = Pendaftar::query();
-        $penerimas = Penerima::query();
 
         if ($request->has('start_date_pendaftar') && $request->start_date_pendaftar != '') {
             $pendaftars->whereDate('updated_at', $request->start_date_pendaftar);
         }
+
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            return view('admin.pages.laporan', [
+                'pendaftars' => $pendaftars->get(),
+                'penerimas' => []
+            ]);
+        } else if (Auth::check() && Auth::user()->role == 'kepala dinas') {
+            return view('kepala-dinas.pages.laporan', [
+                'pendaftars' => $pendaftars->get(),
+                'penerimas' => []
+            ]);            
+        }
+    }
+
+    public function laporanPenerima(Request $request)
+    {
+        $penerimas = Penerima::query();
 
         if ($request->has('start_date_penerima') && $request->start_date_penerima != '') {
             $penerimas->whereDate('updated_at', $request->start_date_penerima);
@@ -41,12 +57,12 @@ class LaporanController extends Controller
 
         if (Auth::check() && Auth::user()->role == 'admin') {
             return view('admin.pages.laporan', [
-                'pendaftars' => $pendaftars->get(),
+                'pendaftars' => [],
                 'penerimas' => $penerimas->get()
             ]);
         } else if (Auth::check() && Auth::user()->role == 'kepala dinas') {
             return view('kepala-dinas.pages.laporan', [
-                'pendaftars' => $pendaftars->get(),
+                'pendaftars' => [],
                 'penerimas' => $penerimas->get()
             ]);            
         }

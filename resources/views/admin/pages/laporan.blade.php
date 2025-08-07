@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Laporan Data Pendaftar</h4>
 
-                    <form method="GET" action="{{ route('admin.laporan.data') }}" class="row g-2 mt-3 align-items-center">
+                    <form method="GET" action="{{ route('admin.laporan-pendaftar.data') }}" class="row g-2 mt-3 align-items-center">
                         <div class="col-auto">
                             <input type="date" name="start_date_pendaftar" class="form-control"
                                 value="{{ request('start_date_pendaftar') }}">
@@ -67,7 +67,7 @@
                 <div class="card-header">
                     <h4 class="card-title">Laporan Data Penerima</h4>
 
-                    <form method="GET" action="{{ route('admin.laporan.data') }}" class="row g-2 mt-3 align-items-center">
+                    <form method="GET" action="{{ route('admin.laporan-penerima.data') }}" class="row g-2 mt-3 align-items-center">
                         <div class="col-auto">
                             <input type="date" name="start_date_penerima" class="form-control"
                                 value="{{ request('start_date_penerima') }}">

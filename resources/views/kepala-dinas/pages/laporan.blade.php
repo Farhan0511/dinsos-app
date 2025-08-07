@@ -85,15 +85,24 @@
                     <h4 class="card-title">Laporan Data Penerima</h4>
 
                     <form method="GET" action="{{ route('kepala-dinas.laporan-penerima.data') }}" class="row g-2 mt-3 align-items-center">
-                        <div class="col-auto">
-                            <input type="date" name="start_date_penerima" class="form-control"
+                        <div class="col-md-4">
+                            <label for="start_date_penerima" class="form-label">Tanggal Mulai</label>
+                            <input type="date" name="start_date_penerima" id="start_date_penerima"
+                                class="form-control"
                                 value="{{ request('start_date_penerima') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="end_date_penerima" class="form-label">Tanggal Akhir</label>
+                            <input type="date" name="end_date_penerima" id="end_date_penerima"
+                                class="form-control"
+                                value="{{ request('end_date_penerima') }}">
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary">Filter</button>
                         </div>
                         <div class="col-auto">
-                            <a href="{{ route('laporan.penerima.pdf', ['start_date_penerima' => request('start_date_penerima')]) }}"
+                            <a href="{{ route('laporan.penerima.pdf', ['start_date_penerima' => request('start_date_penerima'), 
+                            'end_date_penerima' => request('end_date_penerima')]) }}"
                                 class="btn btn-danger mt-2">
                                 <i class="fas fa-file-pdf"></i> Download PDF
                             </a>

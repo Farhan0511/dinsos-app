@@ -31,7 +31,7 @@ class LaporanController extends Controller
         $pendaftars = Pendaftar::query();
 
         if ($request->has('start_date_pendaftar') && $request->start_date_pendaftar != '') {
-            $pendaftars->whereDate('updated_at', $request->start_date_pendaftar);
+            $pendaftars->whereDate('created_at', $request->start_date_pendaftar);
         }
 
         if (Auth::check() && Auth::user()->role == 'admin') {
@@ -52,7 +52,7 @@ class LaporanController extends Controller
         $penerimas = Penerima::query();
 
         if ($request->has('start_date_penerima') && $request->start_date_penerima != '') {
-            $penerimas->whereDate('updated_at', $request->start_date_penerima);
+            $penerimas->whereDate('created_at', $request->start_date_penerima);
         }
 
         if (Auth::check() && Auth::user()->role == 'admin') {
@@ -72,7 +72,7 @@ class LaporanController extends Controller
     {
         $pendaftars = Pendaftar::with('GetUser')
             ->when($request->start_date_pendaftar, fn($q) =>
-                $q->whereDate('updated_at', '>=', $request->start_date_pendaftar)
+                $q->whereDate('created_at', '>=', $request->start_date_pendaftar)
             )
             ->get();
 
@@ -86,7 +86,7 @@ class LaporanController extends Controller
     {
         $penerimas = Penerima::with('GetUser')
             ->when($request->start_date_penerima, fn($q) =>
-                $q->whereDate('updated_at', '>=', $request->start_date_penerima)
+                $q->whereDate('created_at', '>=', $request->start_date_penerima)
             )
             ->get();
 

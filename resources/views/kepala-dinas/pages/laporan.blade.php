@@ -14,20 +14,37 @@
                 <div class="card-header">
                     <h4 class="card-title">Laporan Data Pendaftar</h4>
 
-                    <form method="GET" action="{{ route('kepala-dinas.laporan-pendaftar.data') }}" class="row g-2 mt-3 align-items-center">
-                        <div class="col-auto">
-                            <input type="date" name="start_date_pendaftar" class="form-control"
+                    <form method="GET" action="{{ route('kepala-dinas.laporan-pendaftar.data') }}" class="row g-3 mt-3 align-items-end">
+                        {{-- Input Tanggal Mulai --}}
+                        <div class="col-md-4">
+                            <label for="start_date_pendaftar" class="form-label">Tanggal Mulai</label>
+                            <input type="date" name="start_date_pendaftar" id="start_date_pendaftar"
+                                class="form-control"
                                 value="{{ request('start_date_pendaftar') }}">
                         </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Filter</button>
+
+                        {{-- Input Tanggal Akhir --}}
+                        <div class="col-md-4">
+                            <label for="end_date_pendaftar" class="form-label">Tanggal Akhir</label>
+                            <input type="date" name="end_date_pendaftar" id="end_date_pendaftar"
+                                class="form-control"
+                                value="{{ request('end_date_pendaftar') }}">
                         </div>
-                        <div class="col-auto">
-                            <a href="{{ route('laporan.pendaftar.pdf', ['start_date_pendaftar' => request('start_date_pendaftar')]) }}"
-                                class="btn btn-danger mt-2">
+
+                        {{-- Tombol Filter --}}
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Filter</button>
+                        </div>
+
+                        {{-- Tombol Download PDF --}}
+                        <div class="col-md-2">
+                            <a href="{{ route('laporan.pendaftar.pdf', [
+                                'start_date_pendaftar' => request('start_date_pendaftar'),
+                                'end_date_pendaftar' => request('end_date_pendaftar'),
+                            ]) }}" class="btn btn-danger w-100">
                                 <i class="fas fa-file-pdf"></i> Download PDF
                             </a>
-                        </div>                        
+                        </div>
                     </form>
                 </div>
                 <div class="card-body p-0">

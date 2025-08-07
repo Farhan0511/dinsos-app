@@ -7,6 +7,7 @@ use App\Models\Pendaftar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
@@ -30,8 +31,16 @@ class LaporanController extends Controller
     {
         $pendaftars = Pendaftar::query();
 
-        if ($request->has('start_date_pendaftar') && $request->start_date_pendaftar != '') {
-            $pendaftars->whereDate('created_at', $request->start_date_pendaftar);
+        if ($request->filled('start_date_pendaftar') && $request->filled('end_date_pendaftar')) {
+            $start = Carbon::parse($request->start_date_pendaftar)->startOfDay();
+            $end = Carbon::parse($request->end_date_pendaftar)->endOfDay();
+
+            $pendaftars->whereBetween('updated_at', [$start, $end]);
+        } elseif ($request->filled('start_date_pendaftar')) {
+            $start = Carbon::parse($request->start_date_pendaftar)->startOfDay();
+            $end = Carbon::parse($request->start_date_pendaftar)->endOfDay();
+
+            $pendaftars->whereBetween('updated_at', [$start, $end]);
         }
 
         if (Auth::check() && Auth::user()->role == 'admin') {
@@ -39,11 +48,11 @@ class LaporanController extends Controller
                 'pendaftars' => $pendaftars->get(),
                 'penerimas' => []
             ]);
-        } else if (Auth::check() && Auth::user()->role == 'kepala dinas') {
+        } elseif (Auth::check() && Auth::user()->role == 'kepala dinas') {
             return view('kepala-dinas.pages.laporan', [
                 'pendaftars' => $pendaftars->get(),
                 'penerimas' => []
-            ]);            
+            ]);
         }
     }
 
@@ -51,8 +60,14 @@ class LaporanController extends Controller
     {
         $penerimas = Penerima::query();
 
-        if ($request->has('start_date_penerima') && $request->start_date_penerima != '') {
-            $penerimas->whereDate('created_at', $request->start_date_penerima);
+        if ($request->filled('start_date_penerima') && $request->filled('end_date_penerima')) {
+            $start = Carbon::parse($request->start_date_penerima)->startOfDay();
+            $end = Carbon::parse($request->end_date_penerima)->endOfDay();
+            $penerimas->whereBetween('updated_at', [$start, $end]);
+        } elseif ($request->filled('start_date_penerima')) {
+            $start = Carbon::parse($request->start_date_penerima)->startOfDay();
+            $end = Carbon::parse($request->start_date_penerima)->endOfDay();
+            $penerimas->whereBetween('updated_at', [$start, $end]);
         }
 
         if (Auth::check() && Auth::user()->role == 'admin') {
@@ -60,24 +75,31 @@ class LaporanController extends Controller
                 'pendaftars' => [],
                 'penerimas' => $penerimas->get()
             ]);
-        } else if (Auth::check() && Auth::user()->role == 'kepala dinas') {
+        } elseif (Auth::check() && Auth::user()->role == 'kepala dinas') {
             return view('kepala-dinas.pages.laporan', [
                 'pendaftars' => [],
                 'penerimas' => $penerimas->get()
-            ]);            
+            ]);
         }
     }
 
     public function downloadPendaftarPdf(Request $request)
     {
         $pendaftars = Pendaftar::with('GetUser')
-            ->when($request->start_date_pendaftar, fn($q) =>
-                $q->whereDate('created_at', '>=', $request->start_date_pendaftar)
-            )
+            ->when($request->filled('start_date_pendaftar') && $request->filled('end_date_pendaftar'), function ($query) use ($request) {
+                $start = Carbon::parse($request->start_date_pendaftar)->startOfDay();
+                $end = Carbon::parse($request->end_date_pendaftar)->endOfDay();
+                $query->whereBetween('updated_at', [$start, $end]);
+            })
+            ->when($request->filled('start_date_pendaftar') && !$request->filled('end_date_pendaftar'), function ($query) use ($request) {
+                $start = Carbon::parse($request->start_date_pendaftar)->startOfDay();
+                $end = Carbon::parse($request->start_date_pendaftar)->endOfDay();
+                $query->whereBetween('updated_at', [$start, $end]);
+            })
             ->get();
 
         $pdf = Pdf::loadView('pdf.pendaftar', compact('pendaftars'))
-                ->setPaper('A4', 'portrait');
+            ->setPaper('A4', 'portrait');
 
         return $pdf->download('laporan_pendaftar.pdf');
     }
@@ -85,15 +107,21 @@ class LaporanController extends Controller
     public function downloadPenerimaPdf(Request $request)
     {
         $penerimas = Penerima::with('GetUser')
-            ->when($request->start_date_penerima, fn($q) =>
-                $q->whereDate('created_at', '>=', $request->start_date_penerima)
-            )
+            ->when($request->filled('start_date_penerima') && $request->filled('end_date_penerima'), function ($query) use ($request) {
+                $start = Carbon::parse($request->start_date_penerima)->startOfDay();
+                $end = Carbon::parse($request->end_date_penerima)->endOfDay();
+                $query->whereBetween('updated_at', [$start, $end]);
+            })
+            ->when($request->filled('start_date_penerima') && !$request->filled('end_date_penerima'), function ($query) use ($request) {
+                $start = Carbon::parse($request->start_date_penerima)->startOfDay();
+                $end = Carbon::parse($request->start_date_penerima)->endOfDay();
+                $query->whereBetween('updated_at', [$start, $end]);
+            })
             ->get();
 
         $pdf = Pdf::loadView('pdf.penerima', compact('penerimas'))
-                ->setPaper('A4', 'portrait');
+            ->setPaper('A4', 'portrait');
 
         return $pdf->download('laporan_penerima.pdf');
     }
-
 }

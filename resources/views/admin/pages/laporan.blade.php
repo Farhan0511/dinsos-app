@@ -16,15 +16,21 @@
 
                     <form method="GET" action="{{ route('admin.laporan-pendaftar.data') }}" class="row g-2 mt-3 align-items-center">
                         <div class="col-auto">
+                            <label>Tanggal Mulai</label>
                             <input type="date" name="start_date_pendaftar" class="form-control"
                                 value="{{ request('start_date_pendaftar') }}">
                         </div>
                         <div class="col-auto">
+                            <label>Tanggal Akhir</label>
+                            <input type="date" name="end_date_pendaftar" class="form-control"
+                                value="{{ request('end_date_pendaftar') }}">
+                        </div>
+                        <div class="col-auto mt-4">
                             <button type="submit" class="btn btn-primary">Filter</button>
                         </div>
-                        <div class="col-auto">
-                            <a href="{{ route('laporan.pendaftar.pdf', ['start_date_pendaftar' => request('start_date_pendaftar')]) }}"
-                                class="btn btn-danger mt-2">
+                        <div class="col-auto mt-4">
+                            <a href="{{ route('laporan.pendaftar.pdf', ['start_date_pendaftar' => request('start_date_pendaftar'), 'end_date_pendaftar' => request('end_date_pendaftar')]) }}"
+                                class="btn btn-danger">
                                 <i class="fas fa-file-pdf"></i> Download PDF
                             </a>
                         </div>
@@ -69,15 +75,26 @@
 
                     <form method="GET" action="{{ route('admin.laporan-penerima.data') }}" class="row g-2 mt-3 align-items-center">
                         <div class="col-auto">
+                            <label for="start_date_penerima" class="form-label">Tanggal Mulai</label>
                             <input type="date" name="start_date_penerima" class="form-control"
                                 value="{{ request('start_date_penerima') }}">
                         </div>
+
                         <div class="col-auto">
+                            <label for="end_date_penerima" class="form-label">Tanggal Akhir</label>
+                            <input type="date" name="end_date_penerima" class="form-control"
+                                value="{{ request('end_date_penerima') }}">
+                        </div>
+
+                        <div class="col-auto mt-4">
                             <button type="submit" class="btn btn-primary">Filter</button>
                         </div>
-                        <div class="col-auto">
-                            <a href="{{ route('laporan.penerima.pdf', ['start_date_penerima' => request('start_date_penerima')]) }}"
-                                class="btn btn-danger mt-2">
+
+                        <div class="col-auto mt-4">
+                            <a href="{{ route('laporan.penerima.pdf', [
+                                'start_date_penerima' => request('start_date_penerima'),
+                                'end_date_penerima' => request('end_date_penerima')
+                            ]) }}" class="btn btn-danger">
                                 <i class="fas fa-file-pdf"></i> Download PDF
                             </a>
                         </div>

@@ -46,6 +46,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ Request::routeIs('admin.verifikasi.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.verifikasi.index') }}">
+                        <i class="fas fa-table"></i>
+                        <p>Data Verifikasi</p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ Request::routeIs('admin.penerima.index') ? 'active' : '' }}">
                     <a href="{{ route('admin.penerima.index') }}">
                         <i class="fas fa-check"></i>

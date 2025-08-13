@@ -6,6 +6,7 @@ use App\Models\Distribusi;
 use App\Models\Pendaftar;
 use App\Models\Penerima;
 use App\Models\User;
+use App\Models\Verifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +26,14 @@ class HomeController extends Controller
         $penerima = Penerima::count();
         $distribusi = Distribusi::count();
         return view('kepala-dinas.pages.dashboard', compact('pendaftar', 'penerima', 'distribusi'));
+    }
+
+    public function petugas()
+    {
+        $pendaftar = Pendaftar::count();
+        $verifikasibelum = Verifikasi::where('status', 'belum diterima')->count();
+        $verifikasisudah = Verifikasi::where('status', 'diterima')->count();
+        return view('petugas.pages.dashboard', compact('pendaftar', 'verifikasibelum', 'verifikasisudah'));
     }
 
     public function penerimaBansos()

@@ -13,6 +13,7 @@ use App\Http\Controllers\KepalaDinasController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\PenerimaController;
+use App\Http\Controllers\VerifikasiController;
 use Illuminate\Auth\Events\Login;
 
 /*
@@ -52,6 +53,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 'as' => 'a
     Route::resource('pendaftar', PendaftarController::class);
     Route::resource('penerima', PenerimaController::class);
     Route::resource('distribusi', DistribusiController::class);
+    Route::resource('verifikasi', VerifikasiController::class);
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/data/pendaftar', [LaporanController::class, 'laporanPendaftar'])->name('laporan-pendaftar.data');
     Route::get('/laporan/data/penerima', [LaporanController::class, 'laporanPenerima'])->name('laporan-penerima.data');
@@ -66,6 +68,11 @@ Route::group(['prefix' => 'kepala-dinas', 'middleware' => ['auth', 'kepala-dinas
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/data/pendaftar', [LaporanController::class, 'laporanPendaftar'])->name('laporan-pendaftar.data');
     Route::get('/laporan/data/penerima', [LaporanController::class, 'laporanPenerima'])->name('laporan-penerima.data');
+});
+
+Route::group(['prefix' => 'petugas', 'middleware' => ['auth', 'petugas'], 'as' => 'petugas.'], function () {
+    Route::get('/dashboard', [HomeController::class, 'petugas'])->name('dashboard');
+    Route::resource('verifikasi', VerifikasiController::class);
 });
 
 Route::get('/laporan/pendaftar/pdf', [LaporanController::class, 'downloadPendaftarPdf'])->name('laporan.pendaftar.pdf');

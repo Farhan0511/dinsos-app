@@ -114,11 +114,6 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.pendaftar.edit', $d->id) }}"
-                                                        class="btn btn-sm btn-primary" title="Edit Status">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-
                                                     <button class="btn btn-sm btn-danger btn-delete"
                                                         data-id="{{ $d->id }}" title="Delete">
                                                         <i class="fas fa-trash-alt"></i>

@@ -41,6 +41,8 @@ class LoginController extends Controller
                 return redirect()->route('home')->with('success', 'Login berhasil!');                                
             } else if (Auth::user()->role == 'admin') {
                 return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');                
+            } else if (Auth::user()->role == 'petugas') {
+                return redirect()->route('petugas.dashboard')->with('success', 'Login berhasil!');                
             } else if (Auth::user()->role == 'kepala dinas') {
                 return redirect()->route('kepala-dinas.dashboard')->with('success', 'Login berhasil!');                
             }

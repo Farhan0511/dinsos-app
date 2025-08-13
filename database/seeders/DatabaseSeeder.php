@@ -36,6 +36,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+            'nama' => 'petugas',
+            'email' => 'petugas@gmail.com',
+            'role' => 'petugas',
+            'password' => Hash::make('password'),
+        ]);
+
+        DB::table('users')->insert([
             'nama' => 'user',
             'email' => 'user@gmail.com',
             'role' => 'user',

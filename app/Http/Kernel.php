@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'kepala-dinas' => \App\Http\Middleware\KepalaDinasMiddleware::class,
+        'petugas' => \App\Http\Middleware\PetugasMiddleware::class,
         'redirectIfAdmin' => \App\Http\Middleware\RedirectIfAdmin::class,
 
     ];

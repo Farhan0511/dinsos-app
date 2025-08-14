@@ -31,12 +31,12 @@ class PendaftarController extends Controller
             return redirect()->back()->with('error', 'User tidak ditemukan.');
 
         $request->validate([
-            'nik' => 'required',
+            'nik' => 'required|digits:16|unique:users,nik',
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'jenisKelamin' => 'required',
             'jenisBantuan' => 'required',
-            'nomorTelepon' => 'required',
+            'nomorTelepon' => 'required|regex:/^[0-9]+$/|min:10|max:13',
             'fotoKtp' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'fotoRumah' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'fotoDiri' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',

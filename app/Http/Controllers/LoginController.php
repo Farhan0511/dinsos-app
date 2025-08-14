@@ -38,13 +38,13 @@ class LoginController extends Controller
                 if (!Auth::user()->is_verified) {
                     return redirect()->route('user.otp.verification');
                 }
-                return redirect()->route('home')->with('success', 'Login berhasil!');                                
+                return redirect()->route('home')->with('success', 'Login berhasil!');
             } else if (Auth::user()->role == 'admin') {
-                return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');                
+                return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');
             } else if (Auth::user()->role == 'petugas') {
-                return redirect()->route('petugas.dashboard')->with('success', 'Login berhasil!');                
+                return redirect()->route('petugas.dashboard')->with('success', 'Login berhasil!');
             } else if (Auth::user()->role == 'kepala dinas') {
-                return redirect()->route('kepala-dinas.dashboard')->with('success', 'Login berhasil!');                
+                return redirect()->route('kepala-dinas.dashboard')->with('success', 'Login berhasil!');
             }
         }
 
@@ -69,8 +69,15 @@ class LoginController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'email',
+                'unique:users,email',
+                'regex:/^[a-zA-Z0-9._%+-]+@(gmail|yahoo)\.com$/'
+            ],
             'password' => 'required|min:6',
+        ], [
+            'email.regex' => 'Email harus menggunakan domain @gmail.com atau @yahoo.com',
         ]);
 
         $data['nama'] = $request->nama;
@@ -90,7 +97,8 @@ class LoginController extends Controller
         return redirect()->route('loginUser')->with('success', 'Regist berhasil!');
     }
 
-    public function otp_verification() 
+
+    public function otp_verification()
     {
         return view('auth.pages.otp');
     }

@@ -104,7 +104,9 @@ class PendaftarController extends Controller
             DB::table('pendaftars')->insert([
                 'id_user' => $user->id,
                 'jenisBantuan' => $updateData['jenisBantuan'],
-                'status' => 'belum diterima'
+                'status' => 'belum diterima',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
         return redirect()->back()->with('success', 'Berhasil ditambahkan!');
@@ -141,7 +143,9 @@ class PendaftarController extends Controller
                 'id_user' => $pendaftar->id_user,
                 'jenisBantuan' => $request->jenisBantuan,
                 'status' => $request->status,
-                'tanggal_pengambilan' => $request->tanggal_pengambilan
+                'tanggal_pengambilan' => $request->tanggal_pengambilan,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         } else {
             $penerima->update([

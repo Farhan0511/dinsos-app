@@ -93,7 +93,9 @@ class VerifikasiController extends Controller
                 DB::table('penerimas')->insert([
                     'id_user' => $verifikasi->id_user,
                     'status' => $request->status,
-                    'tanggal_pengambilan' => $request->tanggal_pengambilan
+                    'tanggal_pengambilan' => $request->tanggal_pengambilan,
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ]);
             } else {
                 $penerima->update([
@@ -103,8 +105,8 @@ class VerifikasiController extends Controller
 
             $pendaftar = Pendaftar::where('id_user', $verifikasi->id_user)->first();
             if ($pendaftar) {
-                $penerima->update([
-                    'tanggal_pengambilan' => $request->tanggal_pengambilan
+                $pendaftar->update([
+                    'status' => $request->status,
                 ]);            
             }
             return redirect()->route('admin.verifikasi.index')->with('success', 'Data verifikasi berhasil diupdate!');
